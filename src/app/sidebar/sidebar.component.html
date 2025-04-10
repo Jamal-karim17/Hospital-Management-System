@@ -1,0 +1,80 @@
+<div class="sidebar">
+    
+    <a routerLink="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#patientsMenu">
+        <i class="fas fa-user-injured"></i> Patients
+    </button>
+    <div id="patientsMenu" class="collapse">
+        <a routerLink="/patients/list"><i class="fas fa-list"></i> Patients List</a>
+       
+        <a *ngIf="userRole !== 'pharmacist'" routerLink="/patients/register"><i class="fas fa-user-plus"></i> Register Patient</a>
+
+    </div>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#doctorsMenu">
+        <i class="fas fa-user-md"></i> Doctors/Nurses
+    </button>
+
+   
+    <div id="doctorsMenu" class="collapse">
+        <a routerLink="/doctors/list"><i class="fas fa-list"></i> Doctors List</a>
+       
+        <a *ngIf="userRole !== 'pharmacist'" routerLink="/schedule"><i class="fas fa-calendar-alt"></i> Schedule</a>
+    </div>
+    
+    <!-- Room Management Section -->
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#roomsMenu">
+        <i class="fas fa-door-open"></i> Rooms
+    </button>
+    <div id="roomsMenu" class="collapse">
+        <a routerLink="/roommanagement"><i class="fas fa-cogs"></i> Room Management</a>
+        <a routerLink="/roomcatalogue"><i class="fas fa-bed"></i> Room Catalogue</a>
+    </div>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#bedsMenu">
+        <i class="fas fa-bed"></i> Bed Management
+    </button>
+    <div id="bedsMenu" class="collapse">
+        <a routerLink="/bedcatalogue"><i class="fas fa-bed"></i> Bed Catalogue</a>
+        
+    </div>
+    
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#appointmentsMenu">
+        <i class="fas fa-calendar-check"></i> Appointments
+    </button>
+    <div id="appointmentsMenu" class="collapse">
+        
+        <a routerLink="/bookappointment"><i class="fas fa-calendar-plus"></i> Book Appointment</a>
+       
+    </div>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#billingMenu">
+        <i class="fas fa-file-invoice-dollar"></i> Billing
+    </button>
+    <div id="billingMenu" class="collapse">
+        <a routerLink="/invoicelist"><i class="fas fa-list"></i> Invoice List</a>
+        <a routerLink="/generateinvoice"><i class="fas fa-file-invoice"></i> Generate Invoice</a>
+    </div>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#pharmacyMenu">
+        <i class="fas fa-pills"></i> Pharmacy
+    </button>
+    <div id="pharmacyMenu" class="collapse" *ngIf="canViewPharmacyMenu()">
+        <a routerLink="/medicinelist"><i class="fas fa-capsules"></i> Medicine List</a>
+        <a routerLink="/addmedicine"><i class="fas fa-plus-circle"></i> Add Medicine</a>
+        <a routerLink="/orders"><i class="fas fa-clipboard-list"></i> Orders</a>
+        <a routerLink="/queue"><i class="fas fa-list-ol"></i> Queue</a>
+    </div>
+
+    <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#reportsMenu">
+        <i class="fas fa-chart-bar"></i> Reports
+    </button>
+    <div id="reportsMenu" class="collapse">
+        <a routerLink="/reports/hospital"><i class="fas fa-hospital"></i> Hospital Reports</a>
+        <a routerLink="/reports/financial"><i class="fas fa-money-check-alt"></i> Financial Reports</a>
+    </div>
+
+    <a routerLink="/settings"><i class="fas fa-cog"></i> Settings</a>
+</div>

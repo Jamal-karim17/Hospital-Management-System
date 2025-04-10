@@ -1,0 +1,142 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Ensure the navbar and sidebar stay fixed */
+  app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #2c3e50;
+    color: white;
+    z-index: 1000;
+  }
+  
+  app-sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #34495e;
+    color: white;
+    z-index: 1000;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Main content area */
+  .container {
+    display: flex;
+    margin-top: 80px; /* Adjust for navbar height */
+    margin-left: 240px; /* Adjust for sidebar width */
+    padding: 20px;
+    box-sizing: border-box;
+    width: calc(100% - 240px); /* Account for sidebar width */
+  }
+  
+  .content {
+    flex: 1;
+    background-color: #f7f9fc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 30px;
+    color: #020202;
+    margin-bottom: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    text-decoration: solid;
+
+  }
+
+  h3 {
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    color: #2980b9;
+    font-size: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #2c3e50;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  button.btn-dark{
+    background-color: #020202;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      margin-left: 0;
+    }
+  
+    app-sidebar, app-navbar {
+      width: 100%;
+    }
+  }
+  

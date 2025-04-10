@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div *ngFor="let notification of notifications">
+    <div
+      class="notification"
+      [class.unread]="!notification.isRead"
+      (click)="onNotificationClick(notification.id)"
+    >
+      <!-- Display message properly when notification is unread -->
+      <p *ngIf="!notification.isRead">Unread notification</p>
+      <p *ngIf="notification.isRead">{{ notification.message }}</p>
+      <button (click)="markAsRead(notification.id)">Mark as read</button>
+    </div>
+  </div>
+  

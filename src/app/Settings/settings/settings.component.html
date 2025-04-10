@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="settings-container">
+    <h2>Settings</h2>
+  
+    <!-- Theme Selection -->
+    <div>
+      <label for="theme">Select Theme:</label>
+      <select id="theme" [(ngModel)]="selectedTheme" (change)="changeTheme()">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+      </select>
+    </div>
+  
+    <!-- Notifications Toggle -->
+    <div>
+      <label>Enable Notifications:</label>
+      <input type="checkbox" [(ngModel)]="notificationsEnabled" (change)="toggleNotifications()">
+    </div>
+  
+    <!-- Appointment Duration -->
+    <div>
+      <label>Default Appointment Duration (minutes):</label>
+      <input type="number" [(ngModel)]="appointmentDuration" (change)="updateAppointmentDuration()">
+    </div>
+  
+    <!-- Currency Selection -->
+    <div>
+      <label>Default Currency:</label>
+      <select [(ngModel)]="defaultCurrency" (change)="updateCurrency()">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+    </div>
+  
+    <!-- Billing Options -->
+    <div>
+      <label>Billing Options:</label>
+      <select [(ngModel)]="billingOptions" (change)="updateBillingOptions()">
+        <option *ngFor="let option of billingOptionsList" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  
+    <!-- Working Hours -->
+    <div>
+      <label>Working Hours:</label>
+      <input type="time" [(ngModel)]="workingHours.start" (change)="updateWorkingHours()"> -
+      <input type="time" [(ngModel)]="workingHours.end" (change)="updateWorkingHours()">
+    </div>
+  
+    <!-- Hospital Location -->
+    <div>
+      <label>Hospital Location:</label>
+      <input type="text" [(ngModel)]="hospitalLocation" (change)="updateLocation()">
+    </div>
+  
+   
+  

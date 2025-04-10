@@ -1,0 +1,152 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #343a40; /* Same as sidebar background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensures the navbar stays on top */
+}
+
+.navbar .navbar-brand {
+  color: rgb(14, 13, 13); 
+  font-size: 30px; 
+  font-weight: 600; 
+  display: block; 
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  text-transform: uppercase;
+  
+
+}
+
+.navbar .navbar-toggler {
+  border-color: #495057;
+}
+
+.navbar .navbar-toggler-icon {
+  background-color: #495057;
+}
+
+.navbar-nav .nav-link {
+  color: rgb(15, 15, 15); /* Match sidebar white text */
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #495057; /* Darker hover effect matching sidebar */
+  color: #131212;
+  font-weight: 600;
+}
+
+.navbar-nav .nav-item .dropdown-menu {
+  background-color: #ffffff; /* Match navbar and sidebar */
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-item .dropdown-item {
+  color: #161616; /* Light gray text for dropdown items */
+  font-size: 14px;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item .dropdown-item:hover {
+  background-color: #495057;
+  color: white;
+}
+
+.navbar-nav .nav-item .dropdown-divider {
+  background-color: #495057;
+}
+
+.navbar-nav .nav-item .dropdown-toggle::after {
+  color: #fff;
+}
+
+/* Notification Bell Styling */
+.navbar .fa-bell {
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  color: #000;
+}
+
+/* Hover Effect for Notifications */
+.dropdown-menu:hover {
+  background-color: #615f5f; /* Dark background on hover */
+  color: white;
+}
+
+/* Styling for No Notifications Text */
+.dropdown-item.text-muted {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Notification Item Styling */
+.dropdown-item {
+  padding: 12px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #495057; /* Match sidebar hover */
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-item button {
+  margin-top: 5px;
+}
+
+.dropdown-divider {
+  margin: 5px 0;
+}
+

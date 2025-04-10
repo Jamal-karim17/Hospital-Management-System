@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container mt-5">
+  <h3 class="mb-4"><i class="fas fa-clipboard-list me-2"></i>Orders List</h3>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th><i class="fas fa-hashtag"></i></th>
+        <th><i class="fas fa-calendar-alt"></i> Date</th>
+        <th><i class="fas fa-money-bill-wave"></i> Total</th>
+        <th><i class="fas fa-code"></i> Order Code</th> <!-- Added Order Code column -->
+        <th><i class="fas fa-cogs"></i> Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.date | date:'short' }}</td>
+        <td>{{ order.total | currency:'Ksh ':true }}</td>
+        <td>{{ order.orderCode }}</td> 
+        <td>
+          <button class="btn btn-sm btn-info" (click)="viewOrder(order)">
+            <i class="fas fa-eye me-1"></i> View
+          </button>
+          <button *ngIf="userRole === 'admin'" class="btn btn-sm btn-danger" (click)="deleteOrder(order.id)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div id="orderModal" class="modal-custom" *ngIf="selectedOrder">
+  <div class="modal-content-custom">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <div id="printable">
+      <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 0px;">
+        <img src="assets/logo.jpg" alt="Logo" style="max-width: 80px;" />
+        <h2 style="margin: 0;">General Hospital</h2>
+      </div>
+      <h4><i class="fas fa-file-invoice"></i> Pharmacy Invoice</h4>
+      <p><strong>Date:</strong> {{ selectedOrder.date | date:'fullDate' }}</p>
+      <p><strong>Order Code:</strong> {{ selectedOrder.orderCode }}</p> <!-- Display Order Code here -->
+      <ul>
+        <li *ngFor="let item of selectedOrder.items">
+          <i class="fas fa-pills text-primary"></i> {{ item.brandName }} ({{ item.genericName }}) - 
+          Qty: {{ item.quantity }} - 
+          {{ item.price | currency:'Ksh ':true }}
+        </li>
+      </ul>
+      <p><strong>Total:</strong> {{ selectedOrder.total | currency:'Ksh ':true }}</p>
+    </div>
+    <button class="btn btn-success mt-3" (click)="printOrder()">
+      <i class="fas fa-print me-1"></i> Print
+    </button>
+  </div>
+</div>

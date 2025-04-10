@@ -1,0 +1,98 @@
+/* Notification Container */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-width: 300px; /* Limit the width of the notifications */
+  animation: fade-in 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between notifications */
+}
+
+/* Unread Notification Style */
+.unread {
+  font-weight: bold;
+  color: #d9534f; /* Red color for unread notifications */
+  border-left: 5px solid #d9534f; /* Adds a left border to make it stand out */
+  background-color: #fff5f5; /* Light background to highlight unread notifications */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow to make it pop */
+}
+
+/* Notification Styling */
+.notification {
+  cursor: pointer;
+  padding: 16px;
+  margin: 8px 0;
+  background-color: #ffffff; /* White background for notifications */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Add some space between text and button */
+}
+
+.notification:hover {
+  background-color: #f1f1f1; /* Light hover effect for interactivity */
+  transform: translateY(-5px); /* Slightly elevate the notification */
+}
+
+/* Button for Marking as Read */
+.notification button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start; /* Position button on the left */
+}
+
+.notification button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Notification Text for Unread */
+.notification p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333; /* Dark text for readability */
+}
+
+.notification p.unread {
+  color: #d9534f; /* Red color for unread notification text */
+  font-weight: bold;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Fade-In Animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Query for Responsive Adjustments */
+@media (max-width: 768px) {
+  .notification-container {
+    max-width: 250px; /* Adjust width for smaller screens */
+  }
+  
+  .notification p {
+    font-size: 13px; /* Slightly smaller text on mobile */
+  }
+  
+  .notification button {
+    font-size: 10px; /* Smaller button text on mobile */
+  }
+}

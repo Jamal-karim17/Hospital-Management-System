@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="container mt-4">
+    <!-- Doctors Profile Header -->
+    <h2 class="text-center">Doctor Profile</h2>
+
+    <!-- Profile Card to display doctor details -->
+    <div class="profile-card" *ngIf="doctor">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Full Name:</strong> {{ doctor.fullName }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Gender:</strong> {{ doctor.gender }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Date of Registration:</strong> {{ doctor.registrationDate | date }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Role:</strong> {{ doctor.role }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Phone Number:</strong> {{ doctor.phoneNumber }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Address:</strong> {{ doctor.address }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show message if doctor data is not found -->
+    <div *ngIf="!doctor" class="text-center">
+        <p class="text-danger">Doctor details not found.</p>
+    </div>
+
+    <!-- Button to go back to doctors list -->
+    <div class="text-center mt-3">
+        <button class="btn btn-primary" (click)="goBack()">Back to Doctors List</button>
+    </div>
+</div>

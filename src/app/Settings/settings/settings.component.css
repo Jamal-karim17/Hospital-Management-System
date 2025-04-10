@@ -1,0 +1,73 @@
+/* Settings Container */
+.settings-container {
+    max-width: 800px;
+    margin-left: 260px; /* Adjust to fit between navbar and sidebar */
+    margin-top: 80px;  /* Adjust to fit below the navbar */
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Dark Theme Styling */
+  .dark-theme .settings-container {
+    background: #1e1e1e;
+    color: #f1f1f1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Title (h2) - Keep Unchanged in Both Themes */
+  .settings-container h2 {
+    color: #000 !important; /* Ensures title remains black */
+    font-size: 27px;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Form Labels - Keep Unchanged in Both Themes */
+  .settings-container label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    color: #000 !important; /* Ensures labels remain black */
+  }
+  
+  /* Form Inputs and Select */
+  .settings-container select,
+  .settings-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    color: black;
+    transition: all 0.3s ease;
+  }
+  
+  /* Dark Theme Adjustments - Except Title & Labels */
+  .dark-theme .settings-container select,
+  .dark-theme .settings-container input {
+    background: #222;
+    color: #f1f1f1;
+    border: 1px solid #444;
+  }
+  
+  /* Button Styling */
+  .settings-container button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .settings-container button:hover {
+    background: #0056b3;
+  }
+  

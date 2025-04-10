@@ -1,0 +1,97 @@
+/* Global Reset and Layout */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;  /* Adjust sidebar width as needed */
+    height: 100vh;
+    z-index: 5;
+    background-color: #f4f4f4;
+    padding-top: 60px; /* Adjust for navbar height */
+  }
+  
+  .container {
+    margin-left: 250px; /* Offset the container to the right of the sidebar */
+    margin-top: 80px;  /* Offset for the navbar */
+    padding: 20px;
+    max-width: 80%; /* Limit the width of the content */
+    overflow-x: auto;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: #007bff;
+  }
+  
+  /* Styling for the form */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+  }
+  
+  button.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button.btn:hover {
+    background-color: #218838;
+  }
+  
+  button.btn:focus {
+    outline: none;
+  }
+  
+  /* Make sure the content doesn't overlap on smaller screens */
+  @media (max-width: 768px) {
+    .container {
+      margin-left: 0;
+      margin-top: 60px; /* Adjust top margin for mobile screen */
+      max-width: 100%;
+    }
+  }
+  

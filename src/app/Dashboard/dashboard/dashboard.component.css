@@ -1,0 +1,141 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row; /* Aligns sidebar and content in a row */
+  min-height: 100vh;
+}
+
+app-sidebar {
+  flex: 0 0 250px;  /* Sidebar takes a fixed width */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure the sidebar stays on top */
+}
+
+/* Dashboard Container: Offset to avoid navbar and sidebar */
+.dashboard-container {
+  flex: 1; /* Takes up remaining space */
+  margin-left: 250px; /* Adjust for sidebar */
+  padding: 20px;
+  background-color: #f4f6f9; /* Set background color */
+  font-family: 'Poppins', sans-serif;
+  min-height: calc(100vh - 70px); /* Adjust container height to fit the screen properly */
+}
+
+/* Title Styling */
+h2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center; /* Ensure title is centered */
+}
+
+/* Dashboard Title */
+.dashboard-title {
+  margin-bottom: 30px;
+  color: #343a40;
+  font-weight: 600;
+}
+
+/* Dashboard Cards */
+.card.dashboard-card {
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4a90e2, #1455b0);
+  color: white;
+  height: 100%; /* Ensure cards have equal height */
+}
+
+.card.dashboard-card:hover {
+  transform: scale(1.02);
+}
+
+.card.dashboard-card .card-body {
+  text-align: center;
+  padding: 20px; /* Add some padding for spacing */
+}
+
+.dashboard-card img {
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Icon inside card */
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff; /* Keep white for contrast on gradient */
+}
+
+/* Chart Card Styling */
+.card.chart-card {
+  border: none;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card.chart-card .card-header {
+  background-color: #343a40;
+  color: white;
+  font-weight: 600;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    margin-left: 0; /* Remove sidebar margin on smaller screens */
+    padding: 15px; /* Add padding */
+  }
+
+  .card.dashboard-card img {
+    height: 120px; /* Reduce image size on smaller screens */
+  }
+
+  .card-dashboard {
+    margin-bottom: 15px; /* Reduce space between cards */
+  }
+
+  .col-md-3, .col-md-4 {
+    max-width: calc(50% - 16px); /* For 2 items in a row */
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 767px) {
+  .dashboard-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .card.dashboard-card {
+    margin-bottom: 15px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .dashboard-card img {
+    height: 100px;
+  }
+
+  .col-md-3, .col-md-4 {
+    max-width: calc(100% - 16px); /* Full width on small screens */
+  }
+}

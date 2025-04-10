@@ -1,0 +1,40 @@
+/* Default Light Theme */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --primary-color: #007bff;
+    --secondary-color: #f4f4f4;
+  }
+  
+  /* Dark Theme */
+  [data-theme="dark"] {
+    --bg-color: #181818;
+    --text-color: #ffffff;
+    --primary-color: #1e90ff;
+    --secondary-color: #2b2b2b;
+  }
+  
+  /* Apply Theme */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Style Buttons & Inputs */
+  button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  input, select {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    width: 100%;
+  }
+  

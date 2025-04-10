@@ -1,0 +1,108 @@
+/* Layout Setup: Ensure the navbar and sidebar do not overlap */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin-top: 60px; /* Offset content to avoid overlap with the navbar */
+  }
+  
+  /* Sidebar - Fixed on the left side */
+  .app-sidebar {
+    width: 220px; /* Sidebar width */
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    z-index: 2;
+  }
+  
+  /* Navbar - Fixed at the top */
+  .app-navbar {
+    width: calc(100% - 220px); /* Adjust width to take up full screen minus sidebar */
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 220px; /* Offset from sidebar */
+    padding: 10px;
+    z-index: 3;
+  }
+  
+  /* Main content area */
+  .main-content {
+    margin-left: 220px; /* Sidebar width */
+    width: calc(100% - 220px); /* Main content takes remaining space */
+    padding: 20px;
+    margin-top: 60px; /* Navbar height */
+    box-sizing: border-box;
+  }
+  
+  /* Container for the form */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-top: 60px; /* To ensure the content is below the navbar */
+  }
+  
+  /* Title Styling */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    color: #333;
+    margin-top: 60px; /* Offset title to avoid navbar overlap */
+  }
+  
+  /* Form Field Styling */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button.btn:hover {
+    background-color: #218838;
+  }
+  
+  button.btn:focus {
+    outline: none;
+  }
+  

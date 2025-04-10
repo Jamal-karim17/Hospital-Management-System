@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container">
+  <div class="content">
+    <h2>Generate Invoice</h2>
+
+    <!-- Patient Details -->
+    <div class="form-group">
+      <label for="patient">Select Patient:</label>
+      <select [(ngModel)]="newInvoice.patient.id" id="patient">
+        <option *ngFor="let patient of patients" [value]="patient.id">
+          {{ patient.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="patientAddress">Address:</label>
+      <input type="text" [(ngModel)]="newInvoice.patient.address" id="patientAddress" />
+    </div>
+
+    <div class="form-group">
+      <label for="patientContact">Contact:</label>
+      <input type="text" [(ngModel)]="newInvoice.patient.contact" id="patientContact" />
+    </div>
+
+    <!-- Hospital Department Selection -->
+    <div class="form-group">
+      <label for="hospitalDepartment">Select Hospital Department:</label>
+      <select [(ngModel)]="selectedDepartment" id="hospitalDepartment">
+        <option *ngFor="let department of hospitalDepartments" [value]="department">
+          {{ department }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Doctor Details -->
+    <div class="form-group">
+      <label for="doctor">Select Doctor:</label>
+      <select [(ngModel)]="newInvoice.doctor.id" id="doctor">
+        <option *ngFor="let doctor of doctors" [value]="doctor.id">
+          {{ doctor.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="doctorName">Doctor Name:</label>
+      <input type="text" [(ngModel)]="newInvoice.doctor.name" id="doctorName" />
+    </div>
+
+   
+
+    <!-- Add Service -->
+    <h3>Add Service</h3>
+    <div class="form-group">
+      <input type="text" placeholder="Service Description" [(ngModel)]="serviceDescription" />
+    </div>
+    <div class="form-group">
+      <input type="number" placeholder="Quantity" [(ngModel)]="quantity" />
+    </div>
+    <div class="form-group">
+      <input type="number" placeholder="Unit Price" [(ngModel)]="unitPrice" />
+    </div>
+    <button (click)="addService()">Add Service</button>
+
+    <!-- Display Services -->
+    <h3>Services</h3>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+      </tr>
+      <tr *ngFor="let service of newInvoice.services">
+        <td>{{ service.description }}</td>
+        <td>{{ service.quantity }}</td>
+        <td>{{ service.unitPrice | currency:'Ksh ':true }}</td>
+        <td>{{ service.total  | currency:'Ksh ':true}}</td>
+      </tr>
+    </table>
+
+    <!-- Total Amount -->
+    <div>
+      <h3>Total Amount: {{ newInvoice.totalAmount| currency:'Ksh ':true }}</h3>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="form-group">
+      <label for="paymentMethod">Payment Method:</label>
+      <select [(ngModel)]="newInvoice.paymentMethod" id="paymentMethod">
+        <option>Cash</option>
+        <option>Insurance</option>
+        <option>Bank Transfer</option>
+        <option> Paybill/Till Number</option>
+      </select>
+    </div>
+
+    <!-- Notes -->
+    <div class="form-group">
+      <label for="notes">Notes:</label>
+      <textarea [(ngModel)]="newInvoice.notes" id="notes"></textarea>
+    </div>
+
+    <!-- Save Invoice -->
+    <button  class="btn-dark"(click)="createInvoice()">Save Invoice</button>
+  </div>
+</div>

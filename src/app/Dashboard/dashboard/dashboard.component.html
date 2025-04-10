@@ -1,0 +1,98 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<!-- Dashboard Container with inline background image -->
+<div class="dashboard-container container-fluid py-4 px-4" style="background-image: url('assets/Hospital background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+  <h2 class="dashboard-title mb-4">Hospital Overview</h2>
+
+  <!-- Overview Row -->
+  <div class="row g-4">
+    <!-- Total Patients -->
+    <div class="col-md-3">
+      <div class="card dashboard-card text-center">
+        <img src="assets/patients.jpg" class="card-img-top" alt="Nurse">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-users"></i></div>
+          <h5 class="card-title">Total Patients</h5>
+          <p class="card-text">1,250</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Doctors -->
+    <div class="col-md-3">
+      <div class="card dashboard-card text-center">
+        <img src="assets/nurse.jpg" class="card-img-top" alt="Doctor">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-user-md"></i></div>
+          <h5 class="card-title">Total Doctors</h5>
+          <p class="card-text">85</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointments Today -->
+    <div class="col-md-3">
+      <div class="card dashboard-card text-center">
+        <img src="assets/Medical Staff.jpg" class="card-img-top" alt="Appointments">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+          <h5 class="card-title">Appointments Today</h5>
+          <p class="card-text">48</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue -->
+    <div class="col-md-3">
+      <div class="card dashboard-card text-center">
+        <img src="assets/revenue.jpg" class="card-img-top" alt="Revenue">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+          <h5 class="card-title">Revenue</h5>
+          <p class="card-text">$12,500</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra Details -->
+  <div class="row mt-5 g-4">
+    <!-- Available Beds -->
+    <div class="col-md-4">
+      <div class="card dashboard-card text-center">
+        <img src="assets/beds.jpg" class="card-img-top" alt="Beds">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-bed"></i></div>
+          <h5 class="card-title">Available Beds</h5>
+          <p class="card-text">150</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Average Wait Time -->
+    <div class="col-md-4">
+      <div class="card dashboard-card text-center">
+        <img src="assets/time.jpg" class="card-img-top" alt="Wait Time">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-clock"></i></div>
+          <h5 class="card-title">Avg. Wait Time</h5>
+          <p class="card-text">20 min</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Admissions -->
+    <div class="col-md-4">
+      <div class="card dashboard-card text-center">
+        <img src="assets/doctor.jpg" class="card-img-top" alt="Admissions">
+        <div class="card-body">
+          <div class="card-icon"><i class="fas fa-notes-medical"></i></div>
+          <h5 class="card-title">New Admissions</h5>
+          <p class="card-text">30</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

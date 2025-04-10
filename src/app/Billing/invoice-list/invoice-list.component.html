@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="main-content p-4">
+  <h2>Invoice List</h2>
+
+  <div class="invoice-list">
+    <!-- Table to display invoice details in rows and columns -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Invoice</th>
+          <th>Patient Name</th>
+          <th>Payment Method</th>
+          <th>Total Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ invoice.patientName || 'Unknown Patient' }}</td>
+          <td>{{ invoice.paymentMethod || 'Cash' }}</td>
+          <td>{{ invoice.totalAmount | currency:'Ksh ':true}}</td>
+          <td>{{ invoice.status || 'Pending' }}</td>
+          <td>
+            <button class="btn btn-info" (click)="viewInvoice(invoice)">View Details</button>
+            <button class="btn btn-success" (click)="makePayment(invoice)">Make Payment</button>
+            <button  *ngIf="userRole === 'admin'"class=" btn btn-danger"(click)="deleteInvoice(invoice.invoiceNumber)">Delete</button>
+            <button class="btn btn-warning" (click)="editInvoice(invoice)">Edit</button> <!-- Edit button -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+  <!-- Modal for viewing detailed invoice -->
+  <div *ngIf="selectedInvoice" class="modal-overlay">
+    <div class="modal-content">
+      <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 0px;">
+        <img src="assets/logo.jpg" alt="Logo" style="max-width: 80px;" />
+        <h1 style="margin: 0;">General Hospital</h1>
+      </div>
+      <h3>Invoice Details</h3>
+      
+      <table class="table table-bordered">
+        <tr>
+          <td><strong>Invoice Number:</strong></td>
+          <td>{{ selectedInvoice.invoiceNumber }}</td>
+        </tr>
+        <tr>
+          <td><strong>Patient Name:</strong></td>
+          <td>{{ selectedInvoice.patientName || 'Unknown Patient' }}</td>
+        <tr>
+          <td><strong>Patient Address:</strong></td>
+          <td>{{ selectedInvoice.patientAddress || 'N/A' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Patient Contact:</strong></td>
+          <td>{{ selectedInvoice.patientContact || 'N/A' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Hospital:</strong></td>
+          <td>{{ selectedInvoice.hospitalName || 'Victory Hospital' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Hospital Address:</strong></td>
+          <td>{{ selectedInvoice.hospitalAddress || '123 Medical Street' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Hospital Contact:</strong></td>
+          <td>{{ selectedInvoice.hospitalContact || 'info@victoryhospital.com' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Doctor:</strong></td>
+          <td>
+            <!-- Ensure the doctor's name and specialty are properly handled -->
+            {{ selectedInvoice.doctor?.name || 'Dr. Not Assigned' }} 
+            ({{ selectedInvoice.doctor?.specialty || 'General' }})
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Payment Method:</strong></td>
+          <td>{{ selectedInvoice.paymentMethod || 'Cash' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Services:</strong></td>
+          <td>
+            <ul>
+              <li *ngFor="let service of selectedInvoice.services">
+                {{ service.description }} - {{ service.total| currency:'Ksh ':true }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Total Amount:</strong></td>
+          <td>{{ selectedInvoice.totalAmount | currency:'Ksh ':true }}</td>        
+        </tr>
+      </table>
+
+      <div class="modal-footer">
+        <button (click)="closeModal()">Close</button>
+        <button (click)="printInvoice()">Print</button>
+      </div>
+    
+    </div>
+  </div>
+

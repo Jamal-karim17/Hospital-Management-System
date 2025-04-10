@@ -1,0 +1,127 @@
+/* General styling to prevent overflow and ensure responsiveness */
+.payment-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;  /* Limiting the width of the form */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #0c0c0c;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #218838;
+  }
+  
+  @media (max-width: 768px) {
+    .payment-container {
+      padding: 15px;
+      margin: 10px;
+      max-width: 100%;
+    }
+  
+    h2 {
+      font-size: 1.5em;
+    }
+  
+    .form-group {
+      margin-bottom: 15px;
+    }
+  
+    button {
+      font-size: 1em;
+    }
+  }
+  
+  /* Make sure content does not overlap with navbar and sidebar */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  app-navbar,
+  app-sidebar {
+    position: fixed;
+    z-index: 1000;
+  }
+  
+  app-sidebar {
+    width: 250px;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  
+  app-navbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1001; /* Make sure navbar is on top */
+  }
+  
+  .payment-container {
+    margin-left: 250px; /* Adjust for sidebar width */
+    margin-top: 80px; /* Adjust for navbar height */
+  }
+  
+  /* If the screen size is smaller, make space for the sidebar */
+  @media (max-width: 768px) {
+    .payment-container {
+      margin-left: 0; /* No sidebar space */
+      margin-top: 60px; /* Adjust for navbar height */
+    }
+  }
+  

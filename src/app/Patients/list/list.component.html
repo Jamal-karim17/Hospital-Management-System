@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container">
+    <h2><i class="fas fa-users"></i> Patients List</h2>
+
+    <!-- Search Section -->
+    <div class="search-container mb-3">
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Search by Name"
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="searchPatient()"
+        />
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Reason for Visit</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of filteredPatients">
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.contact }}</td>
+                <td>{{ patient.address }}</td>
+                <td>{{ patient.reason }}</td>
+                <td>
+                    <span class="badge" [ngClass]="patient.discharged === 'Active' ? 'badge-warning' : 'badge-success'">
+                        {{ patient.discharged }}
+                    </span>
+                </td>
+                <td>
+                  <button class="btn btn-info" (click)="viewPatient(patient.id)">View</button>
+                  <button *ngIf="userRole !== 'receptionist' && userRole !== 'pharmacist'" class="btn btn-warning" (click)="dischargePatient(patient.id)" [disabled]="patient.discharged === 'Discharged'">
+                    Discharge
+                  </button>
+                  
+                  <button class="btn btn-danger" *ngIf="userRole === 'admin'" (click)="deletePatient(patient.id)">Delete</button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,88 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1>Bed Catalogue</h1>
+  <div class="form-header">
+    <input type="text" [(ngModel)]="searchQuery" (input)="filterBeds()" placeholder="Search beds..." class="form-control search-box">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBedModal" (click)="addNewBed()">Add New Bed</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Room</th>
+          <th>Patient</th> <!-- Patient Column -->
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bed of filteredBeds">
+          <td>{{ bed.name }}</td>
+          <td>
+            <button class="btn btn-sm"
+                    [class.btn-success]="bed.status === 'Available'"
+                    [class.btn-danger]="bed.status === 'Occupied'"
+                    (click)="toggleStatus(bed)">
+              {{ bed.status }}
+            </button>
+          </td>
+          <td>{{ bed.room?.name || 'No Room' }}</td>
+          <td>{{ bed.patient?.name || 'No Patient' }}</td> <!-- Display Patient Name -->
+          <td class="action-cell">
+            <div class="d-flex">
+              <button class="btn btn-warning btn-sm" (click)="editBed(bed.id)" data-bs-toggle="modal" data-bs-target="#addBedModal">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteBed(bed.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal for Add/Edit -->
+<div class="modal fade" id="addBedModal" tabindex="-1" aria-labelledby="addBedModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBedModalLabel">{{ newBed.id ? 'Edit Bed' : 'Add New Bed' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveNewBed()">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="bedName" class="form-label">Bed Name</label>
+              <select id="bedName" class="form-control" [(ngModel)]="newBed.name" name="name" required>
+                <option *ngFor="let bedName of bedNames" [value]="bedName">{{ bedName }}</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="roomType" class="form-label">Room Type</label>
+              <select id="roomType" class="form-control" [(ngModel)]="newBed.roomType" name="roomType" (change)="onRoomTypeChange()">
+                <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="roomSelect" class="form-label">Room</label>
+              <select id="roomSelect" class="form-control" [(ngModel)]="newBed.room" name="room">
+                <option *ngFor="let room of rooms" [ngValue]="room">{{ room.name }}</option>
+              </select>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="patientSelect" class="form-label">Select Patient</label>
+              <select [(ngModel)]="selectedPatientId" name="patientId" (change)="onPatientSelected()" class="form-control">
+                <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">{{ newBed.id ? 'Save Changes' : 'Save Bed' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

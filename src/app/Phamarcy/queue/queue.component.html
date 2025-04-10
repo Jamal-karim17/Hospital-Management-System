@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="queue-container">
+    <h2>Pharmacy Queue System</h2>
+    
+    <div class="patient-entry">
+      <!-- Standard Dropdown for Selecting Patients -->
+      <label for="patientDropdown">Select Patient</label>
+      <select
+      id="patientDropdown"
+      [(ngModel)]="selectedPatientId"
+      (change)="onPatientSelected()"
+    >
+      <option [ngValue]="null" disabled selected>Select Patient</option>
+      <option *ngFor="let patient of patients" [ngValue]="patient.id">
+        {{ patient.name }}
+      </option>
+    </select>
+      <button (click)="generateQueue()">Generate Queue Number</button>
+    </div>
+
+    <!-- Queue Table -->
+    <table *ngIf="queueList.length > 0" class="queue-table">
+      <thead>
+        <tr>
+          <th>Queue Number</th>
+          <th>Patient Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of queueList">
+          <td>{{ item.number }}</td>
+          <td>
+            {{ item.patientName }}
+            <div class="text-muted" style="font-size: 0.8em;">
+              {{ item.time }}
+            </div>
+          </td>
+          <td>
+            <select
+              [(ngModel)]="item.status"
+              (change)="updateStatus(item.number, item.status)"
+            >
+              <option value="Waiting">Waiting</option>
+              <option value="Serving">Serving</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="removeFromQueue(item.number)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    

@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="payment-container">
+  <h2>Payment for Invoice #{{ invoiceId }}</h2>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="patientName">Patient Name</label>
+        <input id="patientName" formControlName="patientName" class="form-control" />
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label for="amount">Amount</label>
+        <input id="amount" formControlName="amount" type="number" class="form-control" />
+        <small class="text-muted">Formatted: {{ formatAmount(paymentForm.value.amount) }}</small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" formControlName="paymentMethod" class="form-control">
+          <option value="">Select Payment Method</option>
+          <option value="credit">Credit Card</option>
+          <option value="debit">Debit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="bankTransfer">Bank Transfer</option>
+          <option value="cash">Cash</option>
+          <option value="mpesa">MPesa</option>
+          <option value="insurance">Insurance</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label for="paymentDate">Payment Date</label>
+        <input id="paymentDate" formControlName="paymentDate" type="date" class="form-control" />
+      </div>
+    </div>
+
+    <!-- Bank Transfer Fields -->
+    <div *ngIf="showBankDetails" class="row">
+      <div class="col-md-6 form-group">
+        <label for="accountFrom">Account From</label>
+        <input id="accountFrom" formControlName="accountFrom" class="form-control" placeholder="Enter account from" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="accountTo">Account To</label>
+        <input id="accountTo" formControlName="accountTo" class="form-control" placeholder="Enter account to" />
+      </div>
+    </div>
+
+    <!-- MPesa Fields -->
+    <div *ngIf="showMpesaDetails" class="row">
+      <div class="col-md-6 form-group">
+        <label for="mpesaNumber">MPesa Number</label>
+        <input id="mpesaNumber" formControlName="mpesaNumber" class="form-control" placeholder="Enter MPesa number" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="paybillOrTillNumber">Paybill/Till Number</label>
+        <input id="paybillOrTillNumber" formControlName="paybillOrTillNumber" class="form-control" placeholder="Enter Paybill/Till number" />
+      </div>
+    </div>
+
+    <!-- Insurance Fields -->
+    <div *ngIf="showInsuranceDetails" class="row">
+      <div class="col-md-6 form-group">
+        <label for="insuranceName">Insurance Name</label>
+        <input id="insuranceName" formControlName="insuranceName" class="form-control" placeholder="Enter Insurance name" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="policyNumber">Policy Number</label>
+        <input id="policyNumber" formControlName="policyNumber" class="form-control" placeholder="Enter Policy number" />
+      </div>
+    </div>
+
+    <div *ngIf="showInsuranceDetails" class="row">
+      <div class="col-md-6 form-group">
+        <label for="membershipId">Membership ID (if applicable)</label>
+        <input id="membershipId" formControlName="membershipId" class="form-control" placeholder="Enter Membership ID" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="nationalIdOrPassport">National ID or Passport</label>
+        <input id="nationalIdOrPassport" formControlName="nationalIdOrPassport" class="form-control" placeholder="Enter National ID or Passport" />
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">Submit Payment</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+.sidebar {
+    position: fixed;
+    top: 60px; /* Offset sidebar below the navbar */
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 60px); /* Full viewport height minus navbar height */
+    background: #343a40;
+    color: white;
+    padding-top: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar h4 {
+    font-weight: 600;
+}
+
+.sidebar a, .sidebar button {
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar a:hover, .sidebar button:hover {
+    background: #495057;
+    font-weight: 500;
+}
+
+.sidebar i {
+    width: 20px;
+    text-align: center;
+    color: aqua;
+}

@@ -1,0 +1,92 @@
+/* Style for the addmed-container */
+.addmed-container {
+    margin-top: 80px; /* Adjust the margin to ensure it is below the navbar */
+    margin-left: 250px; /* Adjust for sidebar width */
+    margin-right: 20px; /* Ensure content doesn't touch the right edge */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for content */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 270px); /* Adjust width considering sidebar space */
+    max-width: 100%; /* Ensure the container doesn't overflow */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Ensuring form input fields have proper spacing and look clean */
+.addmed-container .form-control,
+.addmed-container .form-select {
+    border-radius: 8px;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
+
+/* Making the container responsive */
+@media (max-width: 768px) {
+    .addmed-container {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px; /* Reduce padding for small screens */
+        width: 100%; /* Ensure full width on mobile */
+    }
+
+    .addmed-container .col-md-6,
+    .addmed-container .col-md-12 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .addmed-container .form-control-sm {
+        font-size: 12px; /* Adjust font size on smaller screens */
+    }
+
+    .addmed-container .form-select-sm {
+        font-size: 12px; /* Adjust font size for select on smaller screens */
+    }
+
+    /* Adjust form button for mobile */
+    .addmed-container .btn-primary {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+/* Form label styling */
+.addmed-container label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #343a40;
+}
+
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px;
+}
+
+/* Button styling */
+.addmed-container .btn-primary {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+/* For a nice shadow effect on the form container */
+.addmed-container .form-control:focus {
+    box-shadow: 0 0 5px rgba(33, 37, 41, 0.5);
+    border-color: #007bff;
+}
+
+/* Icon next to the title */
+h3 i {
+    margin-right: 10px;
+}
+
+/* Smaller form control fields for a more compact look */
+.form-control-sm {
+    font-size: 14px;
+    padding: 0.375rem 0.75rem;
+}
+
+.form-select-sm {
+    font-size: 14px;
+    padding: 0.375rem 0.75rem;
+}

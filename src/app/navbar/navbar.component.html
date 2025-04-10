@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo and Title -->
+    <a class="navbar-brand mx-auto text-center">
+      <img src="assets/logo.jpg" alt="Hospital Management System Logo" style="height: 40px; vertical-align: middle;">
+       General Hospital (Level 5)
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Profile, Notifications, and Logout Buttons -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Register -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">
+            <i class="fas fa-user-plus"></i> Register
+          </a>
+        </li>
+
+        <!-- 🔔 Notification Bell with Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link position-relative dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-bell"></i> 
+            <span *ngIf="unreadCount > 0" class="badge">{{ unreadCount }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+            <li *ngIf="notifications.length === 0" class="dropdown-item text-muted">No new notifications</li>
+            <li *ngFor="let notification of notifications">
+              <!-- Display the message from the notification object -->
+              <a class="dropdown-item" (click)="markAsRead(notification.id)">
+                {{ notification.message }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Cart Icon -->
+        <li class="nav-item dropdown position-relative">
+          <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
+            <span *ngIf="cartItems.length > 0" class="badge bg-danger cart-count">{{ cartItems.length }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
+            <li *ngIf="cartItems.length === 0" class="dropdown-item text-muted">No items in cart</li>
+            <li *ngFor="let item of cartItems">
+              <div class="dropdown-item">
+                <div>{{ item.genericName }} - {{ item.price | currency: 'Ksh ': true }} x {{ item.quantity }}</div>
+                <button class="btn btn-danger btn-sm" (click)="removeFromCart(item)"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item">
+              <strong>Total: </strong> {{ totalAmount | currency: 'Ksh ': true }}
+            </li>
+            <li class="dropdown-item text-center">
+              <button class="btn btn-success btn-sm" (click)="orderItems()" [disabled]="cartItems.length === 0">Order</button>
+              <button class="btn btn-danger btn-sm" (click)="cancelOrder()">Cancel</button>
+            </li>
+          </ul>
+        </li>
+
+        <!-- User Profile -->
+        <li class="nav-item dropdown" *ngIf="isLoggedIn()">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ loggedInUser.username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container">
+    <h2>Room Catalogue</h2>
+  
+    <!-- Table to display rooms -->
+    <table class="room-table" *ngIf="rooms.length > 0">
+      <thead>
+        <tr>
+          <th>Room Name</th>
+          <th>Type</th>
+          <th>Total Beds</th>
+          <th>Available</th>
+          <th>Occupied</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms; let i = index">
+          <td>{{ room.name }}</td>
+          <td>{{ room.type }}</td>
+          <td>{{ room.capacity }}</td>
+          <td>{{ room.available }}</td>
+          <td>{{ room.occupied }}</td>
+          <td>
+            <!-- Edit and Delete buttons -->
+            <button class="btn btn-success" (click)="editRoom(i)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteRoom(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="rooms.length === 0">No rooms added yet.</p>
+  </div>
+  

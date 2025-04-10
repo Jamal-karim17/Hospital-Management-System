@@ -1,0 +1,118 @@
+.container {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Modal Styles */
+  .modal-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+   margin-top: 20px;
+  }
+
+  h2{
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    text-shadow: #f9f9f9;
+    font-style: unset;
+    font-weight: lighter;
+   
+  }
+
+
+
+  h4 {
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    text-shadow: #f9f9f9;
+    font-style: unset;
+    font-weight: lighter;
+  }
+  
+  .modal-content-custom {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 8px;
+    list-style-type: none;
+  }
+  
+  ul li i {
+    margin-right: 8px;
+  }
+  .btn i {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+  
+  /* View button */
+  .btn-info {
+    background-color: #17a2b8;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-info:hover {
+    background-color: #138496;
+  }
+  
+  /* Delete button */
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #bd2130;
+  }
+  
+  /* Add a smooth animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+
+  }
+  @media (max-width: 576px) {
+    .btn i {
+      font-size: 12px;
+    }
+  }
+  

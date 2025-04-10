@@ -1,0 +1,50 @@
+/* Ensure content is correctly positioned between navbar and sidebar */
+.container {
+    max-width: 900px; /* Adjust width to fit between sidebar and navbar */
+    margin-left: 250px; /* Moves content close to the sidebar */
+    margin-top: 100px; /* Ensure it is below the navbar */
+    padding: 20px;
+}
+
+/* Ensures the title does not overlap the navbar */
+h2 {
+    margin-top: 20px; /* Adds space between navbar and title */
+    padding-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+/* Profile card styling */
+.profile-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+/* Text styles */
+.profile-card p {
+    font-size: 16px;
+}
+
+.profile-card strong {
+    font-weight: bold;
+}
+
+/* Button styles */
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .container {
+        margin-left: 0; /* Aligns content properly on small screens */
+        margin-top: 80px; /* Adjusts for smaller screens */
+        padding: 15px;
+    }
+}

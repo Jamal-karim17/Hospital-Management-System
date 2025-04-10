@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container">
+  <h2><i class="fas fa-user-md"></i> Doctor's Appointments</h2>
+
+  <!-- Doctor Selection -->
+  <label for="doctor">Select Doctor:</label>
+  <select id="doctor" class="form-control" (change)="onDoctorSelect($event)">
+    <option value="">-- Select a Doctor --</option>
+    <option *ngFor="let doctor of doctors" [value]="doctor.id">
+      {{ doctor.name }}
+    </option>
+  </select>
+
+  <!-- Display Schedule -->
+  <h3 class="mt-4">Scheduled Appointments</h3>
+  <table *ngIf="filteredAppointments.length > 0" class="table table-bordered mt-2">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Appointment Type</th>
+        <th (click)="toggleSortOrder()" style="cursor: pointer;">
+          Date
+          <i class="fas" [ngClass]="isAscending ? 'fa-sort-up' : 'fa-sort-down'"></i>
+        </th>  <!-- Added Date column with sort toggle -->
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of filteredAppointments">
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.patientName }}</td>
+        <td>{{ appointment.doctorName }}</td>
+        <td>{{ appointment.appointmentType }}</td>
+        <td>{{ appointment.appointmentDate | date: 'shortDate' }}</td>
+        <td>{{ appointment.status === 'Pending' ? 'Pending' : appointment.status }}</td>
+        <td>
+          <!-- Book button for Pending status -->
+          <button *ngIf="appointment.status === 'Pending'" class="btn btn-primary btn-sm" (click)="bookAppointment(appointment)">
+            Book
+          </button>
+
+          <!-- Finish button for Confirmed status -->
+          <button *ngIf="appointment.status === 'Confirmed'" class="btn btn-success btn-sm" (click)="finishAppointment(appointment)">
+            <i class="fas fa-check-circle"></i> Finish
+          </button>
+
+        <!-- Reschedule button for Pending or Confirmed status -->
+<button *ngIf="appointment.status !== 'Cancelled' && userRole !== 'pharmacist'" class="btn btn-warning btn-sm" (click)="rescheduleAppointment(appointment)">
+  Reschedule
+</button>
+
+
+          <!-- Delete button for Admin role -->
+          <button *ngIf="appointment.status !== 'Cancelled' && userRole === 'admin'" class="btn btn-danger btn-sm" (click)="deleteAppointment(appointment)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No Appointments Message -->
+  <p *ngIf="filteredAppointments.length === 0 && selectedDoctorId">
+    No appointments scheduled for this doctor.
+  </p>
+</div>

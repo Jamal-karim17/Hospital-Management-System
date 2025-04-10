@@ -1,0 +1,82 @@
+/* Container for the content, ensuring it's between the navbar and sidebar */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 240px; /* Sidebar width */
+    margin-top: 60px; /* Navbar height */
+    padding: 20px;
+    height: calc(100vh - 60px); /* Full screen minus navbar height */
+    overflow-y: auto; /* Ensures scroll if the content overflows */
+  }
+  
+  /* Main container for the scheduling form */
+  .container {
+    max-width: 100%;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Ensures it takes up the available space */
+  }
+  
+  /* Styling for the title to appear just below the navbar */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Optional: slight shadow for better contrast */
+    color: black !important; /* Ensures the title remains black in dark mode */
+  }
+  
+  /* Form styling */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the table */
+  .table {
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  /* Smaller buttons */
+  .btn-sm {
+    font-size: 14px;
+  }
+  
+  /* Responsive for mobile */
+  @media (max-width: 768px) {
+    .content-container {
+      margin-left: 0; /* Sidebar will collapse on mobile */
+      margin-top: 70px; /* Adjust for navbar height */
+    }
+  
+    .app-sidebar {
+      width: 100%; /* Sidebar takes full width on small screens */
+      height: auto; /* Adjust height on small screens */
+    }
+  
+    .app-navbar {
+      height: 50px; /* Adjust navbar height for smaller screens */
+    }
+  }
+  
+  /* Dark Theme Adjustments */
+  .dark-theme .content-container {
+    background-color: #121212; /* Dark background for the content */
+    color: rgb(12, 12, 12); /* Text color for dark mode */
+  }
+  
+  /* Title should remain black in dark mode */
+  .dark-theme h2 {
+    color: black 
+  }
+  
+  /* Labels should remain black in dark mode */
+  .dark-theme .form-group label {
+    color: black !important; /* Keeps the label black in dark mode */
+  }
+  

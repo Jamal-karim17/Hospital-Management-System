@@ -1,0 +1,154 @@
+/* Global Reset and Layout */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Adjust sidebar width as needed */
+    height: 100vh;
+    z-index: 5;
+    background-color: #f4f4f4;
+    padding-top: 60px; /* Adjust for navbar height */
+}
+
+.container {
+    margin-left: 250px; /* Offset the container to the right of the sidebar */
+    margin-top: 80px;  /* Offset for the navbar */
+    padding: 20px;
+    max-width: calc(100% - 250px); /* Adjust to fit the remaining space after sidebar */
+    overflow-x: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: #0056b3;
+}
+
+/* Search Input and Button */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-container input {
+    width: 75%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+.table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Buttons Styling */
+button.btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+button.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.btn-warning {
+    background-color: #ffc107; /* Keeps discharge button yellow */
+    color: white;
+}
+
+button.btn:hover {
+    opacity: 0.9;
+}
+
+/* Status Badge Styling */
+.badge-success {
+    background-color: #28a745; /* Green for Discharged */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.badge-warning {
+    background-color: #ffc107; /* Yellow for Active */
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        margin-top: 60px; /* Adjust top margin for mobile screen */
+        max-width: 100%;
+    }
+
+    .search-container input {
+        width: 60%;
+    }
+
+    .search-container button {
+        width: 35%;
+    }
+
+    .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="add-edit-form">
+  <h3>{{ editingRoom ? 'Edit Room' : 'Add New Room' }}</h3>
+  
+  <form (ngSubmit)="saveRoom()">
+    <div class="form-group">
+      <label for="roomName">Room Name:</label>
+      <input
+        id="roomName"
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Enter room name"
+        class="form-control"
+        required
+      />
+    </div>
+    
+    <div class="form-group">
+      <label for="roomType">Room Type:</label>
+      <select
+        id="roomType"
+        [(ngModel)]="type"
+        name="type"
+        class="form-control"
+        required
+      >
+        <option *ngFor="let rt of roomTypes" [value]="rt">{{ rt }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="capacity">Capacity:</label>
+      <input
+        id="capacity"
+        type="number"
+        [(ngModel)]="capacity"
+        name="capacity"
+        min="1"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Dynamically change button text -->
+    <button type="submit" class="btn btn-primary w-100">
+      {{ editingRoom ? 'Update Room' : 'Add Room' }}
+    </button>
+  </form>
+</div>
