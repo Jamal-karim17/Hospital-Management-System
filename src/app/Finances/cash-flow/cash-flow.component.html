@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<h3>💰 Cash Flow Statement</h3>
+
+<div class="filters mb-3">
+  <label>Type:</label>
+  <select [(ngModel)]="typeFilter" class="form-select d-inline w-auto me-2">
+    <option value="All">All</option>
+    <option value="Operating">Operating</option>
+    <option value="Investing">Investing</option>
+    <option value="Financing">Financing</option>
+  </select>
+
+  <label>Date Range:</label>
+  <input type="date" [(ngModel)]="startDate" class="form-control d-inline w-auto me-2" />
+  <input type="date" [(ngModel)]="endDate" class="form-control d-inline w-auto me-2" />
+</div>
+
+<ul class="list-group mb-3">
+  <li *ngFor="let tx of filteredTransactions; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+    <span>{{ tx.date }} | {{ tx.type }} - {{ tx.description }}</span>
+    <span class="badge bg-primary rounded-pill">{{ tx.amount | currency }}</span>
+    <button class="btn btn-danger btn-sm ms-2" (click)="deleteTransaction(i)">🗑️</button>
+  </li>
+</ul>
+
+<div class="add-transaction mb-4">
+  <h5>Add Cash Flow</h5>
+  <select [(ngModel)]="newTransaction.type" class="form-select mb-2">
+    <option value="Operating">Operating</option>
+    <option value="Investing">Investing</option>
+    <option value="Financing">Financing</option>
+  </select>
+  <input [(ngModel)]="newTransaction.description" placeholder="Description" class="form-control mb-2" />
+  <input type="number" [(ngModel)]="newTransaction.amount" placeholder="Amount" class="form-control mb-2" />
+  <input type="date" [(ngModel)]="newTransaction.date" class="form-control mb-2" />
+  <button (click)="addTransaction()" class="btn btn-success">Add Transaction</button>
+  
+  <!-- Buttons to add Insurance Transactions -->
+  <button (click)="addInsurancePayment()" class="btn btn-sm btn-info mt-2">+ Insurance Payment (Inflow)</button>
+  <button (click)="addInsuranceClaim()" class="btn btn-sm btn-danger mt-2">+ Insurance Claim (Outflow)</button>
+</div>
+
+<h5>💼 Net Cash Flow</h5>
+<ul>
+  <li>Operating: {{ getNet('Operating') | currency }}</li>
+  <li>Investing: {{ getNet('Investing') | currency }}</li>
+  <li>Financing: {{ getNet('Financing') | currency }}</li>
+</ul>
+<h5>📈 Total Net Change: {{ totalNetChange | currency }}</h5>

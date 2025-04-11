@@ -24,6 +24,11 @@ import { QueueComponent } from './Phamarcy/queue/queue.component';
 import { BedCatalogueComponent } from './Bed/bed-catalogue/bed-catalogue.component';
 import { AddEditRoomComponent } from './Rooms/add-edit-room/add-edit-room.component';
 import { RoomCatalogueComponent } from './Rooms/room-catalogue/room-catalogue.component';
+import { IncomeStatementComponent } from './Finances/income-statement/income-statement.component';
+import { BalanceSheetComponent } from './Finances/balance-sheet/balance-sheet.component';
+import { CashFlowService } from './Services/cash-flow.service';
+import { CashFlowComponent } from './Finances/cash-flow/cash-flow.component';
+import { FinancialReportComponent } from './Reports/financial-report/financial-report.component';
 
 
 const routes: Routes = [
@@ -51,6 +56,12 @@ const routes: Routes = [
 
   {path:'roommanagement', component: AddEditRoomComponent},
   {path: 'roomcatalogue', component: RoomCatalogueComponent},
+
+  {path: 'incomestatement', component: IncomeStatementComponent},
+  {path: 'balancesheet', component: BalanceSheetComponent},
+  {path: 'cashflow', component: CashFlowComponent},
+
+  {path: 'reports/financial', component: FinancialReportComponent},
 
   { path: 'settings', component: SettingsComponent},
 

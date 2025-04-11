@@ -1,5 +1,4 @@
 <div class="sidebar">
-    
     <a routerLink="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#patientsMenu">
@@ -7,23 +6,17 @@
     </button>
     <div id="patientsMenu" class="collapse">
         <a routerLink="/patients/list"><i class="fas fa-list"></i> Patients List</a>
-       
         <a *ngIf="userRole !== 'pharmacist'" routerLink="/patients/register"><i class="fas fa-user-plus"></i> Register Patient</a>
-
     </div>
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#doctorsMenu">
         <i class="fas fa-user-md"></i> Doctors/Nurses
     </button>
-
-   
     <div id="doctorsMenu" class="collapse">
         <a routerLink="/doctors/list"><i class="fas fa-list"></i> Doctors List</a>
-       
         <a *ngIf="userRole !== 'pharmacist'" routerLink="/schedule"><i class="fas fa-calendar-alt"></i> Schedule</a>
     </div>
-    
-    <!-- Room Management Section -->
+
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#roomsMenu">
         <i class="fas fa-door-open"></i> Rooms
     </button>
@@ -37,17 +30,13 @@
     </button>
     <div id="bedsMenu" class="collapse">
         <a routerLink="/bedcatalogue"><i class="fas fa-bed"></i> Bed Catalogue</a>
-        
     </div>
-    
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#appointmentsMenu">
         <i class="fas fa-calendar-check"></i> Appointments
     </button>
     <div id="appointmentsMenu" class="collapse">
-        
         <a routerLink="/bookappointment"><i class="fas fa-calendar-plus"></i> Book Appointment</a>
-       
     </div>
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#billingMenu">
@@ -73,7 +62,13 @@
     </button>
     <div id="reportsMenu" class="collapse">
         <a routerLink="/reports/hospital"><i class="fas fa-hospital"></i> Hospital Reports</a>
-        <a routerLink="/reports/financial"><i class="fas fa-money-check-alt"></i> Financial Reports</a>
+        <a class="ps-3" routerLink="/reports/financial"><i class="fas fa-money-check-alt"></i> Financial Reports</a>
+        <div class="ps-4">
+            <a class="d-block" routerLink="/incomestatement"><i class="fas fa-file-invoice-dollar"></i> Income Statement</a>
+            <a class="d-block" routerLink="/balancesheet"><i class="fas fa-balance-scale"></i> Balance Sheet</a>
+            <a class="d-block" routerLink="/cashflow"><i class="fas fa-water"></i> Cash Flow</a>
+           
+        </div>
     </div>
 
     <a routerLink="/settings"><i class="fas fa-cog"></i> Settings</a>

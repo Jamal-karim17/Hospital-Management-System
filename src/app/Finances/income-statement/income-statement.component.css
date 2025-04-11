@@ -1,0 +1,96 @@
+/* Ensure page content doesn't go under sidebar/navbar */
+:host {
+    display: block;
+    padding-top: 80px; /* adjust based on navbar height */
+    padding-left: 250px; /* adjust based on sidebar width */
+    padding-right: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+  }
+  
+  /* Header styling */
+  h1 {
+    font-weight: 700;
+    color: #343a40;
+  }
+  
+  h3 {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  /* Card and section styling */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    font-weight: 600;
+  }
+  
+  .card-footer {
+    padding-top: 10px;
+  }
+  
+  /* List group styling */
+  .list-group-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: #f8f9fa;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .list-group-item input {
+    margin-bottom: 5px;
+  }
+  
+  /* Form styling inside card */
+  input.form-control {
+    border-radius: 8px;
+  }
+  
+  button.btn {
+    border-radius: 5px;
+  }
+  
+  /* Add transaction form */
+  .card-footer {
+    background-color: #f1f1f1;
+  }
+  
+  .card-footer button {
+    padding: 6px 12px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    :host {
+      padding-left: 0;
+      padding-top: 100px;
+    }
+  
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    .card {
+      margin-bottom: 10px;
+    }
+  
+    .filters label {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+  
+    .filters select, .filters input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

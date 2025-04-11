@@ -1,0 +1,50 @@
+/* balance-sheet.component.css */
+
+:host {
+    display: block;
+    padding-left: 250px; /* Adjust based on your sidebar width */
+    padding-top: 70px;    /* Adjust based on your navbar height */
+    box-sizing: border-box;
+  }
+  
+  .report-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  h3, h4 {
+    color: #2c3e50;
+    margin-top: 2rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  p {
+    margin: 0.4rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    :host {
+      padding-left: 0;
+      padding-top: 120px; /* More space for mobile nav */
+    }
+  
+    .report-container {
+      padding: 1rem;
+    }
+  }
+  

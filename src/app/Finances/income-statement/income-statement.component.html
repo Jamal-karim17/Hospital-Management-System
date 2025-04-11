@@ -1,0 +1,88 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">📊 Income Statement</h1>
+
+  <!-- Revenues Section -->
+  <div class="card mb-4">
+    <div class="card-header bg-success text-white">💵 Revenues</div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of (revenues$ | async); let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <input [(ngModel)]="item.name" (ngModelChange)="updateRevenue(i, item)" class="form-control me-2" />
+        <input [(ngModel)]="item.amount" (ngModelChange)="updateRevenue(i, item)" type="number" class="form-control w-25 me-2" />
+        <button (click)="deleteRevenue(i)" class="btn btn-danger btn-sm">🗑️</button>
+      </li>
+    </ul>
+    <div class="card-footer text-end">
+      <div class="mt-2">
+        <input [(ngModel)]="newRevenue.name" placeholder="Name" class="form-control d-inline w-50 me-2" />
+        <input [(ngModel)]="newRevenue.amount" type="number" placeholder="Amount" class="form-control d-inline w-25 me-2" />
+        <button (click)="addRevenue()" class="btn btn-success">Add Revenue</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+
+  <!-- Insurance Income Section -->
+  <div class="card mb-4">
+    <div class="card-header bg-info text-white">🛡️ Insurance Income</div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of (insuranceIncome$ | async); let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <input [(ngModel)]="item.name" (ngModelChange)="updateInsuranceIncome(i, item)" class="form-control me-2" />
+        <input [(ngModel)]="item.amount" (ngModelChange)="updateInsuranceIncome(i, item)" type="number" class="form-control w-25 me-2" />
+        <button (click)="deleteInsuranceIncome(i)" class="btn btn-danger btn-sm">🗑️</button>
+      </li>
+    </ul>
+    <div class="card-footer text-end">
+      <div class="mt-2">
+        <input [(ngModel)]="newInsuranceIncome.name" placeholder="Name" class="form-control d-inline w-50 me-2" />
+        <input [(ngModel)]="newInsuranceIncome.amount" type="number" placeholder="Amount" class="form-control d-inline w-25 me-2" />
+        <button (click)="addInsuranceIncome()" class="btn btn-info">Add Insurance Income</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+
+  <!-- Accounts Receivable Section (Insurance Claims) -->
+  <div class="card mb-4">
+    <div class="card-header bg-warning text-white">🏥 Insurance Claims (Accounts Receivable)</div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of (insuranceClaims$ | async); let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <input [(ngModel)]="item.name" (ngModelChange)="updateInsuranceClaim(i, item)" class="form-control me-2" />
+        <input [(ngModel)]="item.amount" (ngModelChange)="updateInsuranceClaim(i, item)" type="number" class="form-control w-25 me-2" />
+        <button (click)="deleteInsuranceClaim(i)" class="btn btn-danger btn-sm">🗑️</button>
+      </li>
+    </ul>
+    <div class="card-footer text-end">
+      <div class="mt-2">
+        <input [(ngModel)]="newInsuranceClaim.name" placeholder="Name" class="form-control d-inline w-50 me-2" />
+        <input [(ngModel)]="newInsuranceClaim.amount" type="number" placeholder="Amount" class="form-control d-inline w-25 me-2" />
+        <button (click)="addInsuranceClaim()" class="btn btn-warning">Add Insurance Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+
+  <!-- Expenses Section -->
+  <div class="card mb-4">
+    <div class="card-header bg-danger text-white">💸 Expenses</div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of (expenses$ | async); let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <input [(ngModel)]="item.name" (ngModelChange)="updateExpense(i, item)" class="form-control me-2" />
+        <input [(ngModel)]="item.amount" (ngModelChange)="updateExpense(i, item)" type="number" class="form-control w-25 me-2" />
+        <button (click)="deleteExpense(i)" class="btn btn-danger btn-sm">🗑️</button>
+      </li>
+    </ul>
+    <div class="card-footer text-end">
+      <div class="mt-2">
+        <input [(ngModel)]="newExpense.name" placeholder="Name" class="form-control d-inline w-50 me-2" />
+        <input [(ngModel)]="newExpense.amount" type="number" placeholder="Amount" class="form-control d-inline w-25 me-2" />
+        <button (click)="addExpense()" class="btn btn-success">Add Expense</button>
+      </div>
+    </div>
+  </div>
+</div>

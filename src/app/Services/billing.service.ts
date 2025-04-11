@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ReportService } from './report.service'; // Import ReportService
 
 @Injectable({
   providedIn: 'root',
@@ -6,8 +7,7 @@ import { Injectable } from '@angular/core';
 export class BillingService {
   private invoices: any[] = [];
 
-
-  constructor() {
+  constructor(private reportService: ReportService) { // Inject ReportService
     this.loadInvoices();
   }
 
@@ -30,7 +30,7 @@ export class BillingService {
   // Generate a unique invoice number
   private generateInvoiceNumber(): string {
     const year = new Date().getFullYear();
-    return `INV-${year}${this.invoices.length *112}`;
+    return `INV-${year}${this.invoices.length * 112}`;
   }
 
   // Create a new invoice
@@ -41,6 +41,14 @@ export class BillingService {
     invoice.dueDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // +7 days
     this.invoices.push(invoice);
     this.saveInvoices();
+
+    // Call addRevenue to add the invoice total to the report when a new invoice is created
+    this.reportService.addRevenue({
+      name: 'Invoice',  // Optional 'name' field for clarity
+      category: 'Billing', // Make sure 'category' is valid
+      amount: invoice.total,
+      date: new Date(),   // Date when the revenue is added
+    });
   }
 
   // Update invoice status
@@ -54,24 +62,32 @@ export class BillingService {
 
   // Delete an invoice
   deleteInvoice(invoiceNumber: number): void {
-    // Find the index of the invoice to delete
     const index = this.invoices.findIndex(invoice => invoice.invoiceNumber === invoiceNumber);
     
     if (index !== -1) {
-      // Remove the invoice from the list
       this.invoices.splice(index, 1);
-  
-      // Optionally, save the updated list to LocalStorage or an API
-      localStorage.setItem('invoices', JSON.stringify(this.invoices));
+      this.saveInvoices();
     } else {
       console.error('Invoice not found:', invoiceNumber);
     }
   }
+
+  // Update an invoice
   updateInvoice(updatedInvoice: any) {
     const index = this.invoices.findIndex(invoice => invoice.invoiceNumber === updatedInvoice.invoiceNumber);
     if (index !== -1) {
       this.invoices[index] = updatedInvoice;
       this.saveInvoices();  // Save the updated invoices list to localStorage
     }
+  }
+
+  // Complete payment and add revenue
+  completePayment(amount: number, category = 'Billing') {
+    this.reportService.addRevenue({
+      name: 'Payment',   // Optional 'name' for better clarity
+      category, // Ensure 'category' matches the expected type in ReportService
+      amount,
+      date: new Date(),  // Date when the revenue is added
+    });
   }
 }

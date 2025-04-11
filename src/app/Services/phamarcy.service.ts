@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ReportService } from './report.service'; // Import ReportService
 
 @Injectable({ providedIn: 'root' })
 export class PhamarcyService {
@@ -7,7 +8,7 @@ export class PhamarcyService {
   private cartItems: any[] = [];
   private cartCountSource = new BehaviorSubject<number>(0);
 
-  constructor() {
+  constructor(private reportService: ReportService) {  // Inject ReportService
     // Initialize cart from localStorage
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     this.cartItems = storedCartItems;
@@ -57,7 +58,49 @@ export class PhamarcyService {
     }
   }
 
-  // Remove from cart and return stock
+  // Place order with unique order code
+  placeOrder() {
+    const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+  
+    const order = {
+      id: Date.now(),
+      orderCode: this.generateOrderCode(),  // Add unique order code
+      date: new Date(),
+      items: [...this.cartItems],
+      total: this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+    };
+  
+    existingOrders.push(order);
+    localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+    // Call addRevenue to add the total to the report when the order is placed
+    this.reportService.addRevenue({
+      name: 'Pharmacy',
+      amount: order.total,  // Adding total to the revenue
+    });
+  
+    // Clear the cart after placing the order
+    this.cartItems = [];
+    this.updateCartLocalStorage();
+    this.cartCountSource.next(0);
+  }
+
+  // Generate unique order code
+  private generateOrderCode() {
+    return 'ORD' + Date.now() + Math.floor(Math.random() * 1000); // Example: ORD16122938270010
+  }
+
+  // Update medicine list in localStorage
+  private updateMedicinesLocalStorage() {
+    localStorage.setItem('medicines', JSON.stringify(this.medicines));
+  }
+
+  // Update cart in localStorage
+  private updateCartLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  // Remove item from cart and return stock
   removeFromCart(item: any) {
     const index = this.cartItems.indexOf(item);
     if (index > -1) {
@@ -104,16 +147,6 @@ export class PhamarcyService {
     this.updateMedicinesLocalStorage();
   }
 
-  // Update medicine list in localStorage
-  private updateMedicinesLocalStorage() {
-    localStorage.setItem('medicines', JSON.stringify(this.medicines));
-  }
-
-  // Update cart in localStorage
-  private updateCartLocalStorage() {
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-  }
-
   // Delete medicine from list
   deleteMedicine(medicine: any) {
     // Find the index of the medicine in the medicines list using genericName
@@ -130,32 +163,6 @@ export class PhamarcyService {
       this.cartItems = this.cartItems.filter(item => item.genericName !== medicine.genericName);
       this.updateCartLocalStorage();
     }
-  }
-
-  // Place order with unique order code
-  placeOrder() {
-    const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-  
-    const order = {
-      id: Date.now(),
-      orderCode: this.generateOrderCode(),  // Add unique order code
-      date: new Date(),
-      items: [...this.cartItems],
-      total: this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-    };
-  
-    existingOrders.push(order);
-    localStorage.setItem('orders', JSON.stringify(existingOrders));
-  
-    // Clear the cart after placing the order
-    this.cartItems = [];
-    this.updateCartLocalStorage();
-    this.cartCountSource.next(0);
-  }
-
-  // Generate unique order code
-  private generateOrderCode() {
-    return 'ORD' + Date.now() + Math.floor(Math.random() * 1000); // Example: ORD16122938270010
   }
 
   // Get list of orders

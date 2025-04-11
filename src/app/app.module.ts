@@ -30,6 +30,10 @@ import { QueueComponent } from './Phamarcy/queue/queue.component';
 import { BedCatalogueComponent } from './Bed/bed-catalogue/bed-catalogue.component';
 import { AddEditRoomComponent } from './Rooms/add-edit-room/add-edit-room.component';
 import { RoomCatalogueComponent } from './Rooms/room-catalogue/room-catalogue.component';
+import { IncomeStatementComponent } from './Finances/income-statement/income-statement.component';
+import { BalanceSheetComponent } from './Finances/balance-sheet/balance-sheet.component';
+import { CashFlowComponent } from './Finances/cash-flow/cash-flow.component';
+import { FinancialReportComponent } from './Reports/financial-report/financial-report.component';
 
 
 
@@ -63,6 +67,10 @@ import { RoomCatalogueComponent } from './Rooms/room-catalogue/room-catalogue.co
         BedCatalogueComponent,
         AddEditRoomComponent,
         RoomCatalogueComponent,
+        IncomeStatementComponent,
+        BalanceSheetComponent,
+        CashFlowComponent,
+        FinancialReportComponent,
       
   ],
   imports: [

@@ -1,0 +1,54 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">📘 Balance Sheet</h2>
+
+  <div class="row">
+    <!-- Assets -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">Assets</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let asset of reportService.getAssets(); let i = index">
+            <input type="text" [(ngModel)]="asset.name" class="form-control mb-1" />
+            <input type="number" [(ngModel)]="asset.amount" class="form-control mb-1" />
+            <button class="btn btn-sm btn-danger" (click)="deleteAsset(i)">Remove</button>
+          </li>
+        </ul>
+        <div class="card-footer text-end">
+          <strong>Total Assets: </strong> {{ reportService.getTotalAssets() | currency }}
+          <button class="btn btn-sm btn-success ms-2" (click)="addAsset()">+ Asset</button>
+          <button class="btn btn-sm btn-info ms-2" (click)="addInsuranceClaim()">+ Insurance Claim</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liabilities -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-danger text-white">Liabilities</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let liability of reportService.getLiabilities(); let i = index">
+            <input type="text" [(ngModel)]="liability.name" class="form-control mb-1" />
+            <input type="number" [(ngModel)]="liability.amount" class="form-control mb-1" />
+            <button class="btn btn-sm btn-danger" (click)="deleteLiability(i)">Remove</button>
+          </li>
+        </ul>
+        <div class="card-footer text-end">
+          <strong>Total Liabilities: </strong> {{ reportService.getTotalLiabilities() | currency }}
+          <button class="btn btn-sm btn-success ms-2" (click)="addLiability()">+ Liability</button>
+          <button class="btn btn-sm btn-info ms-2" (click)="addUnpaidPremium()">+ Unpaid Premium</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Section -->
+  <div class="card mt-4">
+    <div class="card-header bg-info text-white">Summary</div>
+    <div class="card-body">
+      <p><strong>Retained Earnings:</strong> {{ retainedEarnings | currency }}</p>
+      <p><strong>Net Worth:</strong> {{ reportService.getTotalAssets() - reportService.getTotalLiabilities() + retainedEarnings | currency }}</p>
+    </div>
+  </div>
+</div>

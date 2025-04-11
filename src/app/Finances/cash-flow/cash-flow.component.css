@@ -1,0 +1,97 @@
+/* Ensure page content doesn't go under sidebar/navbar */
+:host {
+    display: block;
+    padding-top: 80px; /* adjust based on navbar height */
+    padding-left: 250px; /* adjust based on sidebar width */
+    padding-right: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+  }
+  
+  /* Card and section styling */
+  h3, h5 {
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  .filters {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .filters label {
+    margin-right: 10px;
+  }
+  
+  .list-group-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .list-group-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .add-transaction {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .add-transaction h5 {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  .add-transaction .form-control {
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for transaction type badge */
+  .badge {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  /* Responsive handling */
+  @media (max-width: 768px) {
+    :host {
+      padding-left: 0;
+      padding-top: 100px;
+    }
+  
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    .filters,
+    .add-transaction {
+      padding: 10px;
+    }
+  
+    .row {
+      flex-direction: column;
+    }
+  
+    .col-md-6 {
+      width: 100%;
+    }
+  
+    .filters label {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+  
+    .filters select, .filters input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
