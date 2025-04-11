@@ -7,6 +7,12 @@
     padding-bottom: 40px;
     box-sizing: border-box;
   }
+  h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 27px;
+    color: black;
+    text-transform: uppercase;
+  }
   
   /* Card styling */
   .card {

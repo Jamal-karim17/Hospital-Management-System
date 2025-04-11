@@ -10,8 +10,10 @@
   
   /* Card and section styling */
   h3, h5 {
-    font-weight: 600;
+   font-size: 27px;
     color: #343a40;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
   }
   
   .filters {

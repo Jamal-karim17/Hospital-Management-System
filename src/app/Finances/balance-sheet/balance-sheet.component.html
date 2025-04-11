@@ -16,7 +16,7 @@
           </li>
         </ul>
         <div class="card-footer text-end">
-          <strong>Total Assets: </strong> {{ reportService.getTotalAssets() | currency }}
+          <strong>Total Assets: </strong> {{ reportService.getTotalAssets() | currency:'Ksh ':true  }}
           <button class="btn btn-sm btn-success ms-2" (click)="addAsset()">+ Asset</button>
           <button class="btn btn-sm btn-info ms-2" (click)="addInsuranceClaim()">+ Insurance Claim</button>
         </div>
@@ -35,7 +35,7 @@
           </li>
         </ul>
         <div class="card-footer text-end">
-          <strong>Total Liabilities: </strong> {{ reportService.getTotalLiabilities() | currency }}
+          <strong>Total Liabilities: </strong> {{ reportService.getTotalLiabilities() | currency:'Ksh ':true  }}
           <button class="btn btn-sm btn-success ms-2" (click)="addLiability()">+ Liability</button>
           <button class="btn btn-sm btn-info ms-2" (click)="addUnpaidPremium()">+ Unpaid Premium</button>
         </div>
@@ -47,8 +47,8 @@
   <div class="card mt-4">
     <div class="card-header bg-info text-white">Summary</div>
     <div class="card-body">
-      <p><strong>Retained Earnings:</strong> {{ retainedEarnings | currency }}</p>
-      <p><strong>Net Worth:</strong> {{ reportService.getTotalAssets() - reportService.getTotalLiabilities() + retainedEarnings | currency }}</p>
+      <p><strong>Retained Earnings:</strong> {{ retainedEarnings | currency:'Ksh ':true  }}</p>
+      <p><strong>Net Worth:</strong> {{ reportService.getTotalAssets() - reportService.getTotalLiabilities() + retainedEarnings | currency:'Ksh ':true  }}</p>
     </div>
   </div>
 </div>

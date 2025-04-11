@@ -28,120 +28,115 @@ export class ReportService {
 
   constructor() {}
 
-  // Helper function to load data from localStorage
   private loadFromLocalStorage(key: string): Entry[] {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : [];
   }
 
-  // Helper function to save data to localStorage
   private saveToLocalStorage(key: string, data: Entry[]): void {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
   addRevenue(entry: Entry) {
-    const currentRevenues = this.revenuesSubject.getValue();
-    this.revenuesSubject.next([...currentRevenues, entry]);
+    const current = this.revenuesSubject.getValue();
+    this.revenuesSubject.next([...current, entry]);
     this.saveToLocalStorage('revenues', this.revenuesSubject.getValue());
   }
 
   addExpense(entry: Entry) {
-    const currentExpenses = this.expensesSubject.getValue();
-    this.expensesSubject.next([...currentExpenses, entry]);
+    const current = this.expensesSubject.getValue();
+    this.expensesSubject.next([...current, entry]);
     this.saveToLocalStorage('expenses', this.expensesSubject.getValue());
   }
 
   addInsuranceIncome(entry: Entry) {
-    const currentIncome = this.insuranceIncomeSubject.getValue();
-    this.insuranceIncomeSubject.next([...currentIncome, entry]);
+    const current = this.insuranceIncomeSubject.getValue();
+    this.insuranceIncomeSubject.next([...current, entry]);
     this.saveToLocalStorage('insuranceIncome', this.insuranceIncomeSubject.getValue());
   }
 
   addInsuranceClaim(entry: Entry) {
-    const currentClaims = this.insuranceClaimsSubject.getValue();
-    this.insuranceClaimsSubject.next([...currentClaims, entry]);
+    const current = this.insuranceClaimsSubject.getValue();
+    this.insuranceClaimsSubject.next([...current, entry]);
     this.saveToLocalStorage('insuranceClaims', this.insuranceClaimsSubject.getValue());
   }
 
-  // New Methods for Assets and Liabilities
   addAsset(entry: Entry) {
-    const currentAssets = this.assetsSubject.getValue();
-    this.assetsSubject.next([...currentAssets, entry]);
+    const current = this.assetsSubject.getValue();
+    this.assetsSubject.next([...current, entry]);
     this.saveToLocalStorage('assets', this.assetsSubject.getValue());
   }
 
   addLiability(entry: Entry) {
-    const currentLiabilities = this.liabilitiesSubject.getValue();
-    this.liabilitiesSubject.next([...currentLiabilities, entry]);
+    const current = this.liabilitiesSubject.getValue();
+    this.liabilitiesSubject.next([...current, entry]);
     this.saveToLocalStorage('liabilities', this.liabilitiesSubject.getValue());
   }
 
   removeAsset(index: number) {
-    const currentAssets = this.assetsSubject.getValue().filter((_, i) => i !== index);
-    this.assetsSubject.next(currentAssets);
-    this.saveToLocalStorage('assets', this.assetsSubject.getValue());
+    const updated = this.assetsSubject.getValue().filter((_, i) => i !== index);
+    this.assetsSubject.next(updated);
+    this.saveToLocalStorage('assets', updated);
   }
 
   removeLiability(index: number) {
-    const currentLiabilities = this.liabilitiesSubject.getValue().filter((_, i) => i !== index);
-    this.liabilitiesSubject.next(currentLiabilities);
-    this.saveToLocalStorage('liabilities', this.liabilitiesSubject.getValue());
+    const updated = this.liabilitiesSubject.getValue().filter((_, i) => i !== index);
+    this.liabilitiesSubject.next(updated);
+    this.saveToLocalStorage('liabilities', updated);
   }
 
-  // Existing update and delete methods for Revenues, Expenses, Insurance Income, and Claims
   updateRevenue(index: number, entry: Entry) {
-    const currentRevenues = this.revenuesSubject.getValue();
-    currentRevenues[index] = entry;
-    this.revenuesSubject.next([...currentRevenues]);
-    this.saveToLocalStorage('revenues', this.revenuesSubject.getValue());
+    const updated = [...this.revenuesSubject.getValue()];
+    updated[index] = entry;
+    this.revenuesSubject.next(updated);
+    this.saveToLocalStorage('revenues', updated);
   }
 
   updateExpense(index: number, entry: Entry) {
-    const currentExpenses = this.expensesSubject.getValue();
-    currentExpenses[index] = entry;
-    this.expensesSubject.next([...currentExpenses]);
-    this.saveToLocalStorage('expenses', this.expensesSubject.getValue());
+    const updated = [...this.expensesSubject.getValue()];
+    updated[index] = entry;
+    this.expensesSubject.next(updated);
+    this.saveToLocalStorage('expenses', updated);
   }
 
   updateInsuranceIncome(index: number, entry: Entry) {
-    const currentIncome = this.insuranceIncomeSubject.getValue();
-    currentIncome[index] = entry;
-    this.insuranceIncomeSubject.next([...currentIncome]);
-    this.saveToLocalStorage('insuranceIncome', this.insuranceIncomeSubject.getValue());
+    const updated = [...this.insuranceIncomeSubject.getValue()];
+    updated[index] = entry;
+    this.insuranceIncomeSubject.next(updated);
+    this.saveToLocalStorage('insuranceIncome', updated);
   }
 
   updateInsuranceClaim(index: number, entry: Entry) {
-    const currentClaims = this.insuranceClaimsSubject.getValue();
-    currentClaims[index] = entry;
-    this.insuranceClaimsSubject.next([...currentClaims]);
-    this.saveToLocalStorage('insuranceClaims', this.insuranceClaimsSubject.getValue());
+    const updated = [...this.insuranceClaimsSubject.getValue()];
+    updated[index] = entry;
+    this.insuranceClaimsSubject.next(updated);
+    this.saveToLocalStorage('insuranceClaims', updated);
   }
 
   deleteRevenue(index: number) {
-    const currentRevenues = this.revenuesSubject.getValue().filter((_, i) => i !== index);
-    this.revenuesSubject.next(currentRevenues);
-    this.saveToLocalStorage('revenues', this.revenuesSubject.getValue());
+    const updated = this.revenuesSubject.getValue().filter((_, i) => i !== index);
+    this.revenuesSubject.next(updated);
+    this.saveToLocalStorage('revenues', updated);
   }
 
   deleteExpense(index: number) {
-    const currentExpenses = this.expensesSubject.getValue().filter((_, i) => i !== index);
-    this.expensesSubject.next(currentExpenses);
-    this.saveToLocalStorage('expenses', this.expensesSubject.getValue());
+    const updated = this.expensesSubject.getValue().filter((_, i) => i !== index);
+    this.expensesSubject.next(updated);
+    this.saveToLocalStorage('expenses', updated);
   }
 
   deleteInsuranceIncome(index: number) {
-    const currentIncome = this.insuranceIncomeSubject.getValue().filter((_, i) => i !== index);
-    this.insuranceIncomeSubject.next(currentIncome);
-    this.saveToLocalStorage('insuranceIncome', this.insuranceIncomeSubject.getValue());
+    const updated = this.insuranceIncomeSubject.getValue().filter((_, i) => i !== index);
+    this.insuranceIncomeSubject.next(updated);
+    this.saveToLocalStorage('insuranceIncome', updated);
   }
 
   deleteInsuranceClaim(index: number) {
-    const currentClaims = this.insuranceClaimsSubject.getValue().filter((_, i) => i !== index);
-    this.insuranceClaimsSubject.next(currentClaims);
-    this.saveToLocalStorage('insuranceClaims', this.insuranceClaimsSubject.getValue());
+    const updated = this.insuranceClaimsSubject.getValue().filter((_, i) => i !== index);
+    this.insuranceClaimsSubject.next(updated);
+    this.saveToLocalStorage('insuranceClaims', updated);
   }
 
-  // Calculating totals for Revenues, Expenses, Assets, Liabilities
   getTotalRevenue(): number {
     return this.revenuesSubject.getValue().reduce((sum, r) => sum + r.amount, 0);
   }
@@ -151,62 +146,62 @@ export class ReportService {
   }
 
   getTotalAssets(): number {
-    return this.assetsSubject.getValue().reduce((sum, asset) => sum + asset.amount, 0);
+    return this.getAssets().reduce((sum, asset) => sum + asset.amount, 0);
   }
 
   getTotalLiabilities(): number {
-    return this.liabilitiesSubject.getValue().reduce((sum, liability) => sum + liability.amount, 0);
+    return this.getLiabilities().reduce((sum, liability) => sum + liability.amount, 0);
   }
 
-  // Get retained earnings (Revenue - Expenses)
   getRetainedEarnings(): number {
     return this.getTotalRevenue() - this.getTotalExpenses();
   }
 
-  // Calculate equity (Assets - Liabilities)
   getEquity(): number {
     return this.getTotalAssets() - this.getTotalLiabilities();
   }
 
-  // Existing methods for getting assets and liabilities
   getAssets(): Entry[] {
-    return this.assetsSubject.getValue();
+    return [...this.assetsSubject.getValue(), ...this.revenuesSubject.getValue()];
   }
 
   getLiabilities(): Entry[] {
-    return this.liabilitiesSubject.getValue();
+    return [...this.liabilitiesSubject.getValue(), ...this.expensesSubject.getValue()];
   }
 
-  // Get financial data (total sums and key metrics)
   getFinancialData() {
+    const totalRevenue = this.getTotalRevenue();
+    const totalExpenses = this.getTotalExpenses();
+    const netIncome = this.getRetainedEarnings();
+
     return {
-      totalRevenue: this.getTotalRevenue(),
-      totalExpenses: this.getTotalExpenses(),
-      netIncome: this.getRetainedEarnings(),
-      grossProfitMargin: (this.getTotalRevenue() - this.getTotalExpenses()) / this.getTotalRevenue() * 100,
-      inpatientRevenue: this.getTotalRevenue() * 0.4,  // Example distribution
-      outpatientRevenue: this.getTotalRevenue() * 0.2, // Example distribution
-      pharmacyRevenue: this.getTotalRevenue() * 0.15, // Example distribution
-      surgicalRevenue: this.getTotalRevenue() * 0.25, // Example distribution
-      staffSalaries: this.getTotalExpenses() * 0.5,    // Example distribution
-      medicalSupplies: this.getTotalExpenses() * 0.15, // Example distribution
-      adminExpenses: this.getTotalExpenses() * 0.1,    // Example distribution
-      utilities: this.getTotalExpenses() * 0.05,       // Example distribution
+      totalRevenue,
+      totalExpenses,
+      netIncome,
+      grossProfitMargin: totalRevenue ? ((totalRevenue - totalExpenses) / totalRevenue) * 100 : 0,
+      inpatientRevenue: totalRevenue * 0.4,
+      outpatientRevenue: totalRevenue * 0.2,
+      pharmacyRevenue: totalRevenue * 0.15,
+      surgicalRevenue: totalRevenue * 0.25,
+      staffSalaries: totalExpenses * 0.5,
+      medicalSupplies: totalExpenses * 0.15,
+      adminExpenses: totalExpenses * 0.1,
+      utilities: totalExpenses * 0.05,
       totalAssets: this.getTotalAssets(),
       totalLiabilities: this.getTotalLiabilities(),
       equity: this.getEquity(),
-      operatingActivities: 100000,   // Static example
-      investingActivities: -50000,   // Static example
-      financingActivities: 200000,   // Static example
-      netCashFlow: 250000,           // Static example
-      emergencyDept: 200000,         // Example dept cost
-      icuDept: 300000,               // Example dept cost
-      outpatientServices: 150000,    // Example dept cost
-      currentRatio: 2.0,             // Static example
-      quickRatio: 1.5,               // Static example
-      debtToEquityRatio: 0.5,        // Static example
-      predictedRevenue: 1200000,     // Example forecast
-      predictedExpenses: 900000,     // Example forecast
+      operatingActivities: 100000,
+      investingActivities: -50000,
+      financingActivities: 200000,
+      netCashFlow: 250000,
+      emergencyDept: 200000,
+      icuDept: 300000,
+      outpatientServices: 150000,
+      currentRatio: 2.0,
+      quickRatio: 1.5,
+      debtToEquityRatio: 0.5,
+      predictedRevenue: 1200000,
+      predictedExpenses: 900000,
     };
   }
 }

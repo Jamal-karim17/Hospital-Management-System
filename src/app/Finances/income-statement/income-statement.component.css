@@ -10,8 +10,10 @@
   
   /* Header styling */
   h1 {
-    font-weight: 700;
-    color: #343a40;
+   text-transform: uppercase;
+    color: #050505;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 27px;
   }
   
   h3 {
