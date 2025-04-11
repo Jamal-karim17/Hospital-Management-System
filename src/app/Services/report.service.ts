@@ -162,11 +162,11 @@ export class ReportService {
   }
 
   getAssets(): Entry[] {
-    return [...this.assetsSubject.getValue(), ...this.revenuesSubject.getValue()];
+    return this.assetsSubject.getValue();
   }
-
+  
   getLiabilities(): Entry[] {
-    return [...this.liabilitiesSubject.getValue(), ...this.expensesSubject.getValue()];
+    return this.liabilitiesSubject.getValue();
   }
 
   getFinancialData() {
@@ -203,5 +203,10 @@ export class ReportService {
       predictedRevenue: 1200000,
       predictedExpenses: 900000,
     };
+  }
+  addUnpaidPremium(entry: Entry): void {
+    const current = this.liabilitiesSubject.value;
+    this.liabilitiesSubject.next([...current, entry]);
+   
   }
 }

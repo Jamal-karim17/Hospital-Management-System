@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReportService, Entry } from 'src/app/Services/report.service';
+import { ReportService } from 'src/app/Services/report.service';
 
 @Component({
   selector: 'app-balance-sheet',
@@ -17,22 +17,20 @@ export class BalanceSheetComponent {
     this.reportService.addLiability({ name: 'New Liability', amount: 0 });
   }
 
-  addInsuranceClaim() {
-    // Assuming an insurance claim is a receivable, and adding it to assets
-    this.reportService.addAsset({ name: 'Insurance Claim', amount: 0 });
-  }
-
-  addUnpaidPremium() {
-    // Assuming an unpaid premium is a liability
-    this.reportService.addLiability({ name: 'Unpaid Premium', amount: 0 });
-  }
-
   deleteAsset(index: number) {
     this.reportService.removeAsset(index);
   }
 
   deleteLiability(index: number) {
     this.reportService.removeLiability(index);
+  }
+
+  addInsuranceClaim() {
+    this.reportService.addInsuranceClaim({ name: 'Insurance Claim', amount: 0 });
+  }
+
+  addUnpaidPremium() {
+    this.reportService.addUnpaidPremium({ name: 'Unpaid Premium', amount: 0 });
   }
 
   get retainedEarnings(): number {
