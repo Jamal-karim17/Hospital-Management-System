@@ -19,11 +19,10 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
+  // Mark a notification as read
   markAsRead(notificationId: number) {
     this.notificationService.markAsRead(notificationId);
   }
-
-
 
   // Handle the click event on a notification to mark it as read
   onNotificationClick(notificationId: number) {

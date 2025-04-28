@@ -7,6 +7,7 @@
     <div id="patientsMenu" class="collapse">
         <a routerLink="/patients/list"><i class="fas fa-list"></i> Patients List</a>
         <a *ngIf="userRole !== 'pharmacist'" routerLink="/patients/register"><i class="fas fa-user-plus"></i> Register Patient</a>
+        <a routerLink="/queue"><i class="fas fa-list-ol"></i> Queue</a>
     </div>
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#doctorsMenu">
@@ -54,7 +55,7 @@
         <a routerLink="/medicinelist"><i class="fas fa-capsules"></i> Medicine List</a>
         <a routerLink="/addmedicine"><i class="fas fa-plus-circle"></i> Add Medicine</a>
         <a routerLink="/orders"><i class="fas fa-clipboard-list"></i> Orders</a>
-        <a routerLink="/queue"><i class="fas fa-list-ol"></i> Queue</a>
+       
     </div>
 
     <button class="btn btn-dark w-100 text-start" data-bs-toggle="collapse" data-bs-target="#reportsMenu">

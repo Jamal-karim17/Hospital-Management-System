@@ -4,48 +4,54 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class QueueService {
-  private queueKey = 'pharmacyQueue';
+  private queueKey = 'hospitalQueues'; // 🚀 General key for all departments
   private lastQueueTimestampKey = 'queueLastTimestamp';
   private resetIntervalMs: number = 24 * 60 * 60 * 1000; // 24 hours
-  private currentQueueNumber = 1;
-
-  private queue: { number: number; patientName: string; status: string; time: string }[] = [];
+  private departmentQueues: { [department: string]: QueueEntry[] } = {}; // 🚀
+  private currentQueueNumbers: { [department: string]: number } = {}; // 🚀
 
   constructor() {
     this.checkAndResetQueueIfExpired();
   }
 
-  generateQueueNumber(patientName: string): number {
+  generateQueueNumber(department: string, patientName: string): number {
     this.checkAndResetQueueIfExpired();
 
-    const newQueueNumber = this.currentQueueNumber++;
-    this.queue.push({
+    if (!this.departmentQueues[department]) {
+      this.departmentQueues[department] = [];
+      this.currentQueueNumbers[department] = 1;
+    }
+
+    const newQueueNumber = this.currentQueueNumbers[department]++;
+    this.departmentQueues[department].push({
       number: newQueueNumber,
       patientName,
       status: 'Waiting',
-      time: new Date().toLocaleTimeString() // ✅ Add time here
+      time: new Date().toLocaleTimeString()
     });
 
-    this.saveQueue();
+    this.saveQueues();
     return newQueueNumber;
   }
 
-  getQueueList() {
+  getQueueList(department: string) {
     this.checkAndResetQueueIfExpired();
-    return this.queue;
+    return this.departmentQueues[department] || [];
   }
 
-  updateStatus(queueNumber: number, status: string) {
-    const patient = this.queue.find((q) => q.number === queueNumber);
+  updateStatus(department: string, queueNumber: number, status: string) {
+    const patient = this.departmentQueues[department]?.find((q) => q.number === queueNumber);
     if (patient) {
       patient.status = status;
-      this.saveQueue();
+      this.saveQueues();
     }
   }
 
-  removeFromQueue(queueNumber: number) {
-    this.queue = this.queue.filter((q) => q.number !== queueNumber);
-    this.saveQueue();
+  removeFromQueue(department: string, queueNumber: number) {
+    if (this.departmentQueues[department]) {
+      this.departmentQueues[department] = this.departmentQueues[department].filter((q) => q.number !== queueNumber);
+      this.saveQueues();
+    }
   }
 
   private checkAndResetQueueIfExpired() {
@@ -54,29 +60,38 @@ export class QueueService {
     const lastTimestamp = storedTimestamp ? parseInt(storedTimestamp, 10) : 0;
 
     if (now - lastTimestamp >= this.resetIntervalMs) {
-      this.queue = [];
-      this.currentQueueNumber = 1;
-      this.saveQueue();
+      this.departmentQueues = {};
+      this.currentQueueNumbers = {};
+      this.saveQueues();
       localStorage.setItem(this.lastQueueTimestampKey, now.toString());
     } else {
-      this.loadQueue();
+      this.loadQueues();
     }
   }
 
-  private saveQueue() {
-    localStorage.setItem(this.queueKey, JSON.stringify(this.queue));
+  private saveQueues() {
+    localStorage.setItem(this.queueKey, JSON.stringify({
+      queues: this.departmentQueues,
+      numbers: this.currentQueueNumbers
+    }));
   }
 
-  private loadQueue() {
-    const storedQueue = localStorage.getItem(this.queueKey);
-    this.queue = storedQueue ? JSON.parse(storedQueue) : [];
-
-    // Reset currentQueueNumber correctly
-    if (this.queue.length > 0) {
-      const lastNumber = Math.max(...this.queue.map((q) => q.number));
-      this.currentQueueNumber = lastNumber + 1;
+  private loadQueues() {
+    const storedData = localStorage.getItem(this.queueKey);
+    if (storedData) {
+      const parsed = JSON.parse(storedData);
+      this.departmentQueues = parsed.queues || {};
+      this.currentQueueNumbers = parsed.numbers || {};
     } else {
-      this.currentQueueNumber = 1;
+      this.departmentQueues = {};
+      this.currentQueueNumbers = {};
     }
   }
+}
+
+interface QueueEntry {
+  number: number;
+  patientName: string;
+  status: string;
+  time: string;
 }

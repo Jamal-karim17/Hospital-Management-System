@@ -3,21 +3,29 @@
 
 <div class="main-content">
   <div class="queue-container">
-    <h2>Pharmacy Queue System</h2>
-    
+    <h2>{{ selectedDepartment }} Queue System</h2>
+
+    <!-- Department Dropdown -->
+    <div class="department-selection">
+      <label for="departmentDropdown">Select Department</label>
+      <select id="departmentDropdown" [(ngModel)]="selectedDepartment" (change)="updateQueueList()">
+        <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+      </select>
+    </div>
+
+    <!-- Patient Entry Form -->
     <div class="patient-entry">
-      <!-- Standard Dropdown for Selecting Patients -->
       <label for="patientDropdown">Select Patient</label>
       <select
-      id="patientDropdown"
-      [(ngModel)]="selectedPatientId"
-      (change)="onPatientSelected()"
-    >
-      <option [ngValue]="null" disabled selected>Select Patient</option>
-      <option *ngFor="let patient of patients" [ngValue]="patient.id">
-        {{ patient.name }}
-      </option>
-    </select>
+        id="patientDropdown"
+        [(ngModel)]="selectedPatientId"
+        (change)="onPatientSelected()"
+      >
+        <option [ngValue]="null" disabled selected>Select Patient</option>
+        <option *ngFor="let patient of patients" [ngValue]="patient.id">
+          {{ patient.name }}
+        </option>
+      </select>
       <button (click)="generateQueue()">Generate Queue Number</button>
     </div>
 
@@ -56,4 +64,5 @@
         </tr>
       </tbody>
     </table>
-    
+  </div>
+</div>

@@ -47,6 +47,7 @@ export class NotificationService {
     // Optionally save to localStorage (if needed)
     this.saveNotifications();
   }
+
   // Mark a notification as read
   markAsRead(notificationId: number) {
     const notification = this.notifications.find(notif => notif.id === notificationId);
@@ -72,5 +73,23 @@ export class NotificationService {
     this.notifications = [];
     this.notificationsSubject.next([...this.notifications]);
     this.saveNotifications(); // Persist cleared notifications
+  }
+
+  // Notify about a new queue being generated
+  notifyQueueGeneration(patientName: string, queueNumber: number, department: string) {
+    const message = `New queue number ${queueNumber} generated for patient ${patientName} in the ${department} department.`;
+    this.sendNotification(message);
+  }
+
+  // Notify about a queue status update
+  notifyQueueStatusUpdate(patientName: string, queueNumber: number, status: string) {
+    const message = `Queue number ${queueNumber} for patient ${patientName} has been updated to ${status}`;
+    this.sendNotification(message);
+  }
+
+  // Notify about a patient removal from the queue
+  notifyPatientRemoval(patientName: string, queueNumber: number) {
+    const message = `Patient ${patientName} with queue number ${queueNumber} has been removed from the queue`;
+    this.sendNotification(message);
   }
 }
