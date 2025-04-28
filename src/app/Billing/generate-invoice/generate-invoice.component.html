@@ -8,7 +8,7 @@
     <!-- Patient Details -->
     <div class="form-group">
       <label for="patient">Select Patient:</label>
-      <select [(ngModel)]="newInvoice.patient.id" id="patient">
+      <select [(ngModel)]="newInvoice.patient.id" id="patient" (change)="onPatientChange()">
         <option *ngFor="let patient of patients" [value]="patient.id">
           {{ patient.name }}
         </option>
@@ -50,8 +50,6 @@
       <input type="text" [(ngModel)]="newInvoice.doctor.name" id="doctorName" />
     </div>
 
-   
-
     <!-- Add Service -->
     <h3>Add Service</h3>
     <div class="form-group">
@@ -78,13 +76,13 @@
         <td>{{ service.description }}</td>
         <td>{{ service.quantity }}</td>
         <td>{{ service.unitPrice | currency:'Ksh ':true }}</td>
-        <td>{{ service.total  | currency:'Ksh ':true}}</td>
+        <td>{{ service.total | currency:'Ksh ':true }}</td>
       </tr>
     </table>
 
     <!-- Total Amount -->
     <div>
-      <h3>Total Amount: {{ newInvoice.totalAmount| currency:'Ksh ':true }}</h3>
+      <h3>Total Amount: {{ newInvoice.totalAmount | currency:'Ksh ':true }}</h3>
     </div>
 
     <!-- Payment Details -->
@@ -94,7 +92,7 @@
         <option>Cash</option>
         <option>Insurance</option>
         <option>Bank Transfer</option>
-        <option> Paybill/Till Number</option>
+        <option>Paybill/Till Number</option>
       </select>
     </div>
 
@@ -105,6 +103,6 @@
     </div>
 
     <!-- Save Invoice -->
-    <button  class="btn-dark"(click)="createInvoice()">Save Invoice</button>
+    <button class="btn-dark" (click)="createInvoice()">Save Invoice</button>
   </div>
 </div>

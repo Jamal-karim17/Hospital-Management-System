@@ -10,7 +10,7 @@ import { PatientsService } from 'src/app/Services/patients.service';
 })
 export class GenerateInvoiceComponent implements OnInit {
   newInvoice: any = {
-    invoiceNumber: '',  // Added unique invoice number
+    invoiceNumber: '',
     patient: { id: '', name: '', address: '', contact: '' },
     doctor: { id: '', name: '', department: '' },
     services: [],
@@ -68,7 +68,9 @@ export class GenerateInvoiceComponent implements OnInit {
 
     this.patients = patientsData.map(patient => ({
       id: patient.id,
-      name: patient.name || 'Unknown Patient'
+      name: patient.name || 'Unknown Patient',
+      address: patient.address || '',
+      contact: patient.contact || ''
     }));
   }
 
@@ -89,17 +91,14 @@ export class GenerateInvoiceComponent implements OnInit {
   }
 
   createInvoice(): void {
-    // Generate a unique invoice number using timestamp and a random string
-    const randomString = Math.random().toString(36).substring(2, 8); // Random 6-character string
-    const datePrefix = new Date().toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+    const randomString = Math.random().toString(36).substring(2, 8);
+    const datePrefix = new Date().toISOString().split('T')[0];
     this.newInvoice.invoiceNumber = `INV-${datePrefix}-${randomString}`;
-  
-    // Call the service to save the invoice
+
     this.billingService.createInvoice(this.newInvoice);
-  
-    // Reset the invoice to start fresh for the next one
+
     this.newInvoice = {
-      invoiceNumber: '', // Reset unique invoice number
+      invoiceNumber: '',
       patient: { id: '', name: '', address: '', contact: '' },
       doctor: { id: '', name: '', department: '' },
       services: [],
@@ -111,5 +110,13 @@ export class GenerateInvoiceComponent implements OnInit {
       notes: ''
     };
   }
-  
+
+  onPatientChange(): void {
+    const selectedPatient = this.patients.find(patient => patient.id === this.newInvoice.patient.id);
+    if (selectedPatient) {
+      this.newInvoice.patient.name = selectedPatient.name || '';
+      this.newInvoice.patient.address = selectedPatient.address || '';
+      this.newInvoice.patient.contact = selectedPatient.contact || '';
+    }
+  }
 }
